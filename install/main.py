@@ -192,16 +192,6 @@ class Config:
             "name": "Localhost",
             "url": "http://192.168.1.9/download/software_list.json",
             "region": "local"
-        },
-        {
-            "name": "Github",
-            "url": "https://raw.githubusercontent.com/cbepx-me/software-center/main/software_list.json",
-            "region": "Global"
-        },
-        {
-            "name": "Gitcode",
-            "url": "https://gitcode.com/cbepx/software-center/raw/main/software_list.json",
-            "region": "CN"
         }
     ]
     repositories = [
