@@ -10,7 +10,6 @@ from __future__ import annotations
 # Standard Library Imports
 # =========================
 import ctypes
-import hashlib
 import json
 import logging
 import math
@@ -22,11 +21,9 @@ import subprocess
 import sys
 import time
 import zipfile
-import threading
 from dataclasses import dataclass, asdict, fields, field
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
-from urllib.error import ContentTooShortError, URLError
 
 # =========================
 # Third-Party Imports
@@ -137,17 +134,21 @@ class Config:
     COLOR_BUTTON_SECONDARY: str = "#475569"
     COLOR_BUTTON_HOVER: str = "#6366f1"
 
+    if os.name == "nt":
+        root_path = APP_PATH + "/sys"
+    else:
+        root_path = ""
     font_file: str = os.path.join(APP_PATH, "font", "font.ttf")
     if not os.path.exists(font_file):
-        font_file: str = "/mnt/vendor/bin/default.ttf"
+        font_file: str = root_path + "/mnt/vendor/bin/default.ttf"
 
     # Software Center Specific Paths
-    database_path: str = "/mnt/mod/ctrl/configs/software_center/installed.json"
-    uninstall_path: str = "/mnt/mod/ctrl/configs/software_center/uninstall"
-    screenshots_path: str = "/mnt/mod/ctrl/configs/software_center/screenshots"
+    database_path: str = root_path + "/mnt/mod/ctrl/configs/software_center/installed.json"
+    uninstall_path: str = root_path + "/mnt/mod/ctrl/configs/software_center/uninstall"
+    screenshots_path: str = root_path + "/mnt/mod/ctrl/configs/software_center/screenshots"
     if not os.path.exists(uninstall_path):
         os.makedirs(uninstall_path, exist_ok=True)
-    cache_dir = "/tmp/software_center/screenshots"
+    cache_dir = root_path + "/tmp/software_center/screenshots"
 
     # Software Categories
     categories: Tuple[str, ...] = (
@@ -160,20 +161,24 @@ class Config:
     )
 
     tmp_list = [
-        "/dev/shm",
-        "/tmp",
-        "/mnt/mmc",
-        "/mnt/sdcard"
+        root_path + "/dev/shm",
+        root_path + "/tmp",
+        root_path + "/mnt/mmc",
+        root_path + "/mnt/sdcard"
     ]
 
     free_space = []
     for tmp in tmp_list:
         if os.path.exists(tmp):
             usage = shutil.disk_usage(tmp)
-            free_num = usage.free + 1 if tmp == "/tmp" else usage.free
+            free_num = usage.free + 1 if tmp == root_path + "/tmp" else usage.free
             free_space.append((free_num, tmp))
     free_space.sort(key=lambda x: x[0], reverse=True)
-    cache_path: str = (free_space[0][1] if free_space[0][1] else "/tmp") + "/tmp_install"
+    if free_space:
+        cache_path: str = (free_space[0][1] if free_space[0][1] else root_path + "/tmp") + "/tmp_install"
+    else:
+        cache_path: str = (root_path + "/tmp") + "/tmp_install"
+    os.makedirs(cache_path, exist_ok=True)
     LOGGER.info(f"Use the temporary download path: {cache_path}")
 
     bytes_per_pixel: int = 4
@@ -190,7 +195,7 @@ class Config:
     mirrors = [
         {
             "name": "Localhost",
-            "url": "http://192.168.1.9/download/software_list.json",
+            "url": "http://192.168.1.227/download/software_list.json",
             "region": "local"
         }
     ]
@@ -374,34 +379,70 @@ class InputHandler:
         self.code_name: str = ""
         self.value: int = 0
 
+        if os.name == "nt":
+            self.key_map = {
+                sdl2.SDLK_UP: ("DY", -1),
+                sdl2.SDLK_DOWN: ("DY", 1),
+                sdl2.SDLK_LEFT: ("DX", -1),
+                sdl2.SDLK_RIGHT: ("DX", 1),
+                sdl2.SDLK_RETURN: ("A", 1),
+                sdl2.SDLK_SPACE: ("A", 1),
+                sdl2.SDLK_ESCAPE: ("SELECT", 1),
+                sdl2.SDLK_BACKSPACE: ("B", 1),
+                sdl2.SDLK_TAB: ("L1", 1),
+                sdl2.SDLK_PAGEUP: ("R1", 1),
+                sdl2.SDLK_PAGEDOWN: ("L2", 1),
+                sdl2.SDLK_HOME: ("R2", 1),
+                # 可根据需要补充更多映射
+            }
+
     def poll(self) -> None:
-        try:
-            with open("/dev/input/event1", "rb") as f:
-                while True:
-                    event = f.read(24)
-                    if not event:
-                        break
-                    (tv_sec, tv_usec, etype, kcode, kvalue) = struct.unpack(
-                        "llHHI", event
-                    )
-                    if kvalue != 0:
-                        if kvalue != 1:
-                            kvalue = -1
-                        else:
-                            kvalue = 1  # 确保值为1或-1
-                        self.code_name = self.cfg.keymap.get(kcode, str(kcode))
-                        self.value = kvalue
-                        LOGGER.debug(
-                            "Key pressed: %s (code: %s, value: %s)",
-                            self.code_name,
-                            kcode,
-                            kvalue,
-                        )
+        if os.name == "nt":
+            event = sdl2.SDL_Event()
+            while sdl2.SDL_PollEvent(ctypes.byref(event)):
+                if event.type == sdl2.SDL_KEYDOWN:
+                    sym = event.key.keysym.sym
+                    if sym in self.key_map:
+                        name, val = self.key_map[sym]
+                        self.code_name = name
+                        self.value = val
                         return
-        except Exception as e:
-            LOGGER.error("Error reading input: %s", e)
+                # 可选：处理窗口关闭事件，以便用户点击 X 退出
+                elif event.type == sdl2.SDL_QUIT:
+                    self.code_name = "SELECT"  # 映射为退出
+                    self.value = 1
+                    return
+            # 无事件时重置
             self.code_name = ""
             self.value = 0
+        else:
+            try:
+                with open("/dev/input/event1", "rb") as f:
+                    while True:
+                        event = f.read(24)
+                        if not event:
+                            break
+                        (tv_sec, tv_usec, etype, kcode, kvalue) = struct.unpack(
+                            "llHHI", event
+                        )
+                        if kvalue != 0:
+                            if kvalue != 1:
+                                kvalue = -1
+                            else:
+                                kvalue = 1  # 确保值为1或-1
+                            self.code_name = self.cfg.keymap.get(kcode, str(kcode))
+                            self.value = kvalue
+                            LOGGER.debug(
+                                "Key pressed: %s (code: %s, value: %s)",
+                                self.code_name,
+                                kcode,
+                                kvalue,
+                            )
+                            return
+            except Exception as e:
+                LOGGER.error("Error reading input: %s", e)
+                self.code_name = ""
+                self.value = 0
 
     def is_key(self, name: str, key_value: int = 99) -> bool:
         if self.code_name == name:
@@ -469,14 +510,26 @@ class UIRenderer:
         self.active_draw = ImageDraw.Draw(self.active_image)
 
     def _create_window(self):
-        window = sdl2.SDL_CreateWindow(
-            "Software Center".encode("utf-8"),
-            sdl2.SDL_WINDOWPOS_UNDEFINED,
-            sdl2.SDL_WINDOWPOS_UNDEFINED,
-            0,
-            0,
-            sdl2.SDL_WINDOW_FULLSCREEN_DESKTOP | sdl2.SDL_WINDOW_SHOWN,
-        )
+        if os.name == "nt":
+            window_width = self.x_size
+            window_height = self.y_size
+            window = sdl2.SDL_CreateWindow(
+                "Software Center".encode("utf-8"),
+                sdl2.SDL_WINDOWPOS_UNDEFINED,
+                sdl2.SDL_WINDOWPOS_UNDEFINED,
+                window_width,
+                window_height,
+                sdl2.SDL_WINDOW_SHOWN
+            )
+        else:
+            window = sdl2.SDL_CreateWindow(
+                "Software Center".encode("utf-8"),
+                sdl2.SDL_WINDOWPOS_UNDEFINED,
+                sdl2.SDL_WINDOWPOS_UNDEFINED,
+                0,
+                0,
+                sdl2.SDL_WINDOW_FULLSCREEN_DESKTOP | sdl2.SDL_WINDOW_SHOWN,
+            )
 
         if not window:
             print(f"Failed to create window: {sdl2.SDL_GetError()}")
@@ -810,17 +863,8 @@ class UIRenderer:
         current_time = time.time()
         rotation = (current_time * 90) % 360
 
-        outer_radius = radius
-        inner_radius = radius - 8
-
         segments = 8
         for i in range(segments):
-            start_angle = rotation + i * (360 / segments)
-            end_angle = start_angle + (360 / segments) - 10
-
-            start_rad = math.radians(start_angle)
-            end_rad = math.radians(end_angle)
-
             angle = rotation - i * 45
             rad = angle * 3.14159 / 180
             dot_x = center_x + radius * math.cos(rad)
@@ -847,6 +891,11 @@ class UIRenderer:
         self.active_draw.ellipse([x - radius, y - radius, x + radius, y + radius],
                                  fill=fill, outline=outline)
 
+    def tips_info(self, info_txt: str = None) -> None:
+        if info_txt:
+            self.panel([20, self.y_size // 2 - 60, self.x_size - 20, self.y_size // 2 + 60])
+            self.text((self.x_size // 2, self.y_size // 2), info_txt, anchor="mm",)
+            self.paint()
 
 # =========================
 # Software Manager
@@ -1012,6 +1061,7 @@ class SoftwareManager:
 
             if has_install:
                 LOGGER.info(f"Executing install.sh for {software.name}")
+                self.ui.tips_info(self.t.t("Installing") + ' ' + software.name + ' ...')
                 try:
                     # 确保脚本可执行
                     st = os.stat(os.path.join(install_dir, "install.sh"))
@@ -1038,6 +1088,7 @@ class SoftwareManager:
 
             if has_uninstall:
                 LOGGER.info(f"Copying uninstall.sh from {software.name}")
+                self.ui.tips_info(self.t.t("Uninstall") + ' ' + software.name + ' ...')
                 uninstall_dir = os.path.join(self.cfg.uninstall_path, software.category, software.id)
                 os.makedirs(uninstall_dir, exist_ok=True)
                 shutil.copyfile(uninstall_script, os.path.join(uninstall_dir, "uninstall.sh"))
@@ -1191,7 +1242,7 @@ class SoftwareManager:
                     self.ui.text(
                         (self.ui.x_size // 2, self.ui.y_size // 2 - 20),
                         f"{self.t.t('Extracting')}: {file_name}",
-                        font=18, anchor="mm"
+                        font=22, anchor="mm"
                     )
 
                     progress_text = f"{i + 1} / {total_files} {self.t.t('files')}"
@@ -1257,7 +1308,7 @@ class SoftwareCenterUI:
         self.cfg = manager.cfg
 
         self.current_page = 0
-        self.board_info = Path("/mnt/vendor/oem/board.ini").read_text().splitlines()[0]
+        self.board_info = Path(self.cfg.root_path + "/mnt/vendor/oem/board.ini").read_text().splitlines()[0]
         self.hw_info = self.cfg.board_mapping.get(self.board_info, 5)
         if self.hw_info == 1:
             self.software_per_page = 6
@@ -1703,24 +1754,6 @@ class SoftwareCenterUI:
                 lines.append(' '.join(current_line))
         return lines
 
-    def download_screenshot(self, url: str, local_path: str) -> Optional[Image.Image]:
-        """下载截图并返回PIL Image对象，失败返回None"""
-        try:
-            os.makedirs(os.path.dirname(local_path), exist_ok=True)
-            # 如果已存在，直接打开
-            if os.path.exists(local_path):
-                return True
-            # 否则下载
-            response = self.manager.session.get(url, stream=True, timeout=10)
-            response.raise_for_status()
-            with open(local_path, 'wb') as f:
-                for chunk in response.iter_content(1024):
-                    f.write(chunk)
-            return True
-        except Exception as e:
-            LOGGER.error(f"Failed to download screenshot {url}: {e}")
-            return False
-
     def draw_search_interface(self) -> None:
         """Draw search interface"""
         self.ui.clear()
@@ -1811,7 +1844,7 @@ class SoftwareCenterApp:
 
         # Detect hardware and language
         try:
-            board_info = Path("/mnt/vendor/oem/board.ini").read_text().splitlines()[0]
+            board_info = Path(self.cfg.root_path + "/mnt/vendor/oem/board.ini").read_text().splitlines()[0]
             LOGGER.info("Detected board: %s", board_info)
         except (FileNotFoundError, IndexError) as e:
             LOGGER.warning("Board detection failed: %s, using default RG35xxH", e)
@@ -1819,7 +1852,7 @@ class SoftwareCenterApp:
         self.board_info = board_info
 
         try:
-            lang_index_raw = Path("/mnt/vendor/oem/language.ini").read_text().splitlines()[0]
+            lang_index_raw = Path(self.cfg.root_path + "/mnt/vendor/oem/language.ini").read_text().splitlines()[0]
             lang_index = int(lang_index_raw)
             LOGGER.info("Detected language index: %s", lang_index)
         except (FileNotFoundError, IndexError, ValueError) as e:
@@ -1937,8 +1970,8 @@ class SoftwareCenterApp:
             remote_zip_url = base_url + "assets.zip"
 
             # 2. 本地版本路径
-            local_ver_file = "/mnt/mod/ctrl/configs/software_center/assets_version.txt"
-            target_dir = "/mnt/mod/ctrl/configs/software_center"
+            local_ver_file = self.cfg.root_path + "/mnt/mod/ctrl/configs/software_center/assets_version.txt"
+            target_dir = self.cfg.root_path + "/mnt/mod/ctrl/configs/software_center"
 
             # 3. 读取本地版本
             local_ver = assets_date  # 模块顶部的 assets_date
