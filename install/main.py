@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
-
 """
 Stock OS Software Center - Professional Edition
 """
-
 from __future__ import annotations
 
 # =========================
@@ -194,16 +192,25 @@ class Config:
     # Software Repositories
     mirrors = [
         {
-            "name": "Localhost",
-            "url": "http://192.168.1.227/download/software_list.json",
-            "region": "local"
+            "name": "Gitcode",
+            "url": "https://raw.gitcode.com/cbepx/install/raw/main/software_list.json",
+            "region": "CN",
+            "server": "https://gitcode.com/cbepx/install/releases/download/download/"
+        },
+        {
+            "name": "Github",
+            "url": "https://github.com/cbepx-me/Online_installation/raw/refs/heads/main/software_list.json",
+            "region": "Global",
+            "server": "https://github.com/cbepx-me/Online_installation/releases/download/download/"
         }
+
     ]
     repositories = [
         {
             "name": "None",
             "url": "None",
-            "region": "None"
+            "region": "None",
+            "server": "None"
         }
     ]
 
@@ -230,9 +237,10 @@ class Config:
     repositories[0]["name"] = speeds[0][1]["name"] if speeds[0][0] != float('inf') else fallback_mirror["name"]
     repositories[0]["url"] = speeds[0][1]["url"] if speeds[0][0] != float('inf') else fallback_mirror["url"]
     repositories[0]["region"] = speeds[0][1]["region"] if speeds[0][0] != float('inf') else fallback_mirror["region"]
+    repositories[0]["server"] = speeds[0][1]["server"] if speeds[0][0] != float('inf') else fallback_mirror["server"]
     server_name = repositories[0]["name"]
     info_server = repositories[0]["url"]
-    server_url = info_server[:-18]
+    server_url = repositories[0]["server"]
     LOGGER.info(f"Use the downloaded server: {server_name}")
 
     def __post_init__(self):
@@ -310,7 +318,7 @@ class SoftwarePackage:
     local_version: str = ""
     update_available: bool = False
     install_path: str = ""
-    extra_fields: Dict[str, Any] = field(default_factory=dict)  # 存储额外字段
+    extra_fields: Dict[str, Any] = field(default_factory=dict)
 
 
     def __post_init__(self):
@@ -318,13 +326,12 @@ class SoftwarePackage:
             self.screenshots = []
         if self.dependencies is None:
             self.dependencies = []
-        if self.compatibility is None:  # 初始化 compatibility
+        if self.compatibility is None:
             self.compatibility = []
 
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'SoftwarePackage':
-        """从字典创建实例，处理未知字段"""
         known_fields = {f.name for f in fields(cls) if f.name != 'extra_fields'}
         known_data = {k: v for k, v in data.items() if k in known_fields}
         extra_fields = {k: v for k, v in data.items() if k not in known_fields}
@@ -393,7 +400,6 @@ class InputHandler:
                 sdl2.SDLK_PAGEUP: ("R1", 1),
                 sdl2.SDLK_PAGEDOWN: ("L2", 1),
                 sdl2.SDLK_HOME: ("R2", 1),
-                # 可根据需要补充更多映射
             }
 
     def poll(self) -> None:
@@ -407,12 +413,10 @@ class InputHandler:
                         self.code_name = name
                         self.value = val
                         return
-                # 可选：处理窗口关闭事件，以便用户点击 X 退出
                 elif event.type == sdl2.SDL_QUIT:
-                    self.code_name = "SELECT"  # 映射为退出
+                    self.code_name = "SELECT"
                     self.value = 1
                     return
-            # 无事件时重置
             self.code_name = ""
             self.value = 0
         else:
@@ -429,7 +433,7 @@ class InputHandler:
                             if kvalue != 1:
                                 kvalue = -1
                             else:
-                                kvalue = 1  # 确保值为1或-1
+                                kvalue = 1
                             self.code_name = self.cfg.keymap.get(kcode, str(kcode))
                             self.value = kvalue
                             LOGGER.debug(
@@ -647,7 +651,6 @@ class UIRenderer:
         if self.hw_info == 3 and rota == 1 and self.hdmi_info != "HDMI=1":
             img = img.rotate(-90, expand=True)
         self.active_image.paste(img, (paste_x, paste_y))
-        #self.paint()
 
     def rect(self, xy, fill=None, outline=None, width: int = 1, radius: int = 0, shadow: bool = False) -> None:
         if shadow and radius > 0:
@@ -850,7 +853,7 @@ class UIRenderer:
 
         return f"#{r:02x}{g:02x}{b:02x}"
 
-    def draw_loading_screen(self, title: str, subtitle: str = None, progress: float = 0) -> None:
+    def draw_loading_screen(self, title: str, subtitle: str = None) -> None:
         self.clear()
 
         for i in range(self.y_size):
@@ -963,18 +966,16 @@ class SoftwareManager:
                 self.software_list = []
 
                 lang = self.t.lang_code
-                is_chinese = lang.startswith('zh')  # zh_CN, zh_TW 等均视为中文
+                is_chinese = lang.startswith('zh')
                 desc_key = 'description_zh' if is_chinese else 'description_en'
                 chang_key = 'changelog_zh' if is_chinese else 'changelog_en'
 
-                # 验证数据格式
                 if 'software' not in software_data:
                     LOGGER.error(f"Invalid software list format: missing 'software' key")
                     continue
 
                 for i, item in enumerate(software_data.get('software', [])):
                     try:
-                        # 验证必要字段
                         description = item.get(desc_key) or item.get('description', '')
                         item['description'] = description
                         changelog = item.get(chang_key) or item.get('changelog', '')
@@ -984,7 +985,7 @@ class SoftwareManager:
                         for field in required_fields:
                             if field not in item:
                                 LOGGER.warning(f"Missing required field '{field}' in software item {i}")
-                                item[field] = f"unknown_{field}"  # 提供默认值
+                                item[field] = f"unknown_{field}"
 
                         software = SoftwarePackage(**item)
 
@@ -1053,7 +1054,6 @@ class SoftwareManager:
                 shutil.rmtree(self.cfg.cache_path, ignore_errors=True)
                 return False
 
-            # 检查是否有 install.sh 和 uninstall.sh
             install_script = os.path.join(install_dir, "install.sh")
             uninstall_script = os.path.join(install_dir, "uninstall.sh")
             has_install = os.path.isfile(install_script)
@@ -1061,9 +1061,8 @@ class SoftwareManager:
 
             if has_install:
                 LOGGER.info(f"Executing install.sh for {software.name}")
-                self.ui.tips_info(self.t.t("Installing") + ' ' + software.name + ' ...')
+                self.ui.tips_info(self.t.t("Installing") + ' ...')
                 try:
-                    # 确保脚本可执行
                     st = os.stat(os.path.join(install_dir, "install.sh"))
                     os.chmod(os.path.join(install_dir, "install.sh"), st.st_mode | 0o111)
                     result = subprocess.run(
@@ -1071,7 +1070,7 @@ class SoftwareManager:
                         cwd=install_dir,
                         capture_output=True,
                         text=True,
-                        timeout=300  # 5分钟超时
+                        timeout=300
                     )
                     if result.returncode != 0:
                         LOGGER.error(f"install.sh failed with return code {result.returncode}")
@@ -1082,13 +1081,11 @@ class SoftwareManager:
                     LOGGER.info(f"install.sh executed successfully")
                 except Exception as e:
                     LOGGER.error(f"Error executing install.sh: {e}")
-                    # 安装失败，清理安装目录
                     shutil.rmtree(self.cfg.cache_path, ignore_errors=True)
                     return False
 
             if has_uninstall:
                 LOGGER.info(f"Copying uninstall.sh from {software.name}")
-                self.ui.tips_info(self.t.t("Uninstall") + ' ' + software.name + ' ...')
                 uninstall_dir = os.path.join(self.cfg.uninstall_path, software.category, software.id)
                 os.makedirs(uninstall_dir, exist_ok=True)
                 shutil.copyfile(uninstall_script, os.path.join(uninstall_dir, "uninstall.sh"))
@@ -1249,7 +1246,7 @@ class SoftwareManager:
                     self.ui.text(
                         (self.ui.x_size // 2, self.ui.y_size // 2 + 40),
                         progress_text,
-                        font=16, anchor="mm", color=self.ui.cfg.COLOR_TEXT_SECONDARY
+                        font=18, anchor="mm", color=self.ui.cfg.COLOR_TEXT_SECONDARY
                     )
 
                     self.ui.progress_bar(self.ui.y_size // 2 + 10, percent)
@@ -1329,7 +1326,6 @@ class SoftwareCenterUI:
         # Category tabs
         self.draw_category_tabs()
 
-        # 获取当前分类的软件列表
         if self.manager.search_query:
             software_list = self.manager.search_software(self.manager.search_query)
             title = self.t.t("Search Results")
@@ -1337,11 +1333,9 @@ class SoftwareCenterUI:
             software_list = self.manager.get_software_by_category(self.manager.current_category)
             title = self.get_category_title()
 
-        # 修复分页逻辑
         total_software = len(software_list)
         total_pages = max(1, (total_software + self.software_per_page - 1) // self.software_per_page)
 
-        # 确保当前页在有效范围内
         if self.current_page >= total_pages:
             self.current_page = max(0, total_pages - 1)
 
@@ -1349,7 +1343,6 @@ class SoftwareCenterUI:
         end_idx = min(start_idx + self.software_per_page, total_software)
         current_software = software_list[start_idx:end_idx]
 
-        # 确保选中索引在有效范围内
         if self.selected_index >= len(current_software):
             self.selected_index = max(0, len(current_software) - 1)
 
@@ -1367,7 +1360,6 @@ class SoftwareCenterUI:
         # Bottom actions
         self.draw_bottom_actions()
 
-        # 强制刷新显示
         self.ui.paint()
 
     def draw_category_tabs(self) -> None:
@@ -1422,8 +1414,7 @@ class SoftwareCenterUI:
             return
 
         grid_cols = 2
-        grid_rows = 2
-        card_width = (self.ui.x_size - 30) // grid_cols  # 减去边距
+        card_width = (self.ui.x_size - 30) // grid_cols
         card_height = 120
         start_y = 160
 
@@ -1446,14 +1437,12 @@ class SoftwareCenterUI:
             x1, y1, x2, y2 = rect
 
             # Card background with selection highlight
-            card_color = self.cfg.COLOR_CARD_LIGHT if selected else self.cfg.COLOR_CARD
             self.ui.panel([x1, y1, x2, y2], shadow=True)
 
             if selected:
                 self.ui.rect([x1 - 3, y1 - 3, x2 + 3, y2 + 3],
                              outline=self.cfg.COLOR_PRIMARY, width=2, radius=16)
 
-            # 确保坐标在屏幕范围内
             if x1 < 0 or y1 < 0 or x2 > self.ui.x_size or y2 > self.ui.y_size:
                 LOGGER.warning(f"Card coordinates out of bounds: [{x1}, {y1}, {x2}, {y2}]")
 
@@ -1601,15 +1590,12 @@ class SoftwareCenterUI:
         self.ui.text((detail_x, content_top + 50), f"v{software.version}", font=16,
                      color=self.cfg.COLOR_TEXT_SECONDARY)
 
-        # 修复：检查author字段是否存在
         author_text = f"by {software.author}" if software.author else self.t.t("Unknown Author")
         self.ui.text((detail_x, content_top + 75), author_text, font=14,
                      color=self.cfg.COLOR_TEXT_TERTIARY)
 
-        # ----- 截图显示 -----
         if software.screenshots:
-            screenshot = software.screenshots[0]  # 先只显示第一张截图
-            # 构建完整 URL
+            screenshot = software.screenshots[0]
             screenshot_path = os.path.join(self.cfg.screenshots_path, software.id, screenshot)
             try:
                 if os.path.exists(screenshot_path):
@@ -1628,7 +1614,6 @@ class SoftwareCenterUI:
         desc_width = panel_width // 2 - 20
         wrapped_desc = self.wrap_text(software.description, 16, desc_width)
 
-        # 计算可用的最大行数（每行高度 25，底部留出 20 边距）
         available_lines = 8
         display_lines = wrapped_desc[:available_lines]
 
@@ -1645,7 +1630,6 @@ class SoftwareCenterUI:
         self.ui.text((int(30 + panel_width // 2), info_y + 20), f"{self.t.t('Category')}: {self.get_category_display_name(software.category)}",
                      font=16)
 
-        # 更新日志
         if software.changelog:
             changelog_y = info_y + 40
             right_start_x = 30 + panel_width // 2
@@ -1655,7 +1639,6 @@ class SoftwareCenterUI:
                          font=16, bold=True)
             wrapped_desc = self.wrap_text(software.changelog, 16, right_width)
 
-            # 计算可用的最大行数（每行高度 25，底部留出 20 边距）
             available_lines = 3
             display_lines = wrapped_desc[:available_lines]
 
@@ -1677,9 +1660,6 @@ class SoftwareCenterUI:
                 self.ui.button([app_x, button_y, app_x + button_width, button_y + 40],
                                self.t.t('Update'), "A", True)
             else:
-                #self.ui.button([app_x, button_y, app_x + button_width, button_y + 40],
-                               #self.t.t("Launch"), "A", True)
-
                 # Uninstall button
                 self.ui.button([button_x, button_y, button_x + button_width, button_y + 40],
                                self.t.t("Uninstall"), "Y", False)
@@ -1696,15 +1676,12 @@ class SoftwareCenterUI:
         LOGGER.info(f"Displayed software detail: {software.name}")
 
     def wrap_text(self, text: str, font_size: int, max_width: int) -> List[str]:
-        """
-        将文本按指定宽度换行，保留原有换行符，并拆分超长单词。
-        """
         try:
             font = ImageFont.truetype(self.cfg.font_file, font_size)
         except:
             font = ImageFont.load_default()
 
-        paragraphs = text.split('\n')  # 先按原始换行分段
+        paragraphs = text.split('\n')
         lines = []
 
         for para in paragraphs:
@@ -1719,14 +1696,12 @@ class SoftwareCenterUI:
 
             current_line = []
             for word in words:
-                # 检查单词本身是否过长
                 test_word = word
                 while True:
                     bbox = self.ui.active_draw.textbbox((0, 0), test_word, font=font)
                     word_width = bbox[2] - bbox[0]
                     if word_width <= max_width or len(test_word) <= 1:
                         break
-                    # 二分查找能容纳的最大前缀
                     low, high = 1, len(test_word)
                     while low < high:
                         mid = (low + high + 1) // 2
@@ -1737,10 +1712,10 @@ class SoftwareCenterUI:
                             low = mid
                         else:
                             high = mid - 1
-                    lines.append(test_word[:low])  # 将可容纳的前缀作为一行
-                    test_word = test_word[low:].lstrip()  # 剩余部分继续处理
-                    current_line = []  # 重新开始新行
-                # 现在 test_word 是能单独放入一行的片段，尝试合并到当前行
+                    lines.append(test_word[:low])
+                    test_word = test_word[low:].lstrip()
+                    current_line = []
+
                 test_line = ' '.join(current_line + [test_word]) if current_line else test_word
                 bbox = self.ui.active_draw.textbbox((0, 0), test_line, font=font)
                 line_width = bbox[2] - bbox[0]
@@ -1834,7 +1809,6 @@ class SoftwareCenterUI:
 
         self.ui.paint()
 
-
 # =========================
 # Main Software Center Application
 # =========================
@@ -1874,13 +1848,11 @@ class SoftwareCenterApp:
 
     def run(self) -> None:
         """Main application loop"""
-        # 显示加载屏幕
         self.ui.draw_loading_screen(
             self.t.t("Software Center"),
             self.t.t("Loading software catalog...")
         )
 
-        # 检查网络连接
         if not self.check_network():
             self.ui_helper.draw_message(
                 self.t.t("No Internet Connection"),
@@ -1891,10 +1863,8 @@ class SoftwareCenterApp:
             self.cleanup()
             return
 
-        # 更新资源文件
         self.update_assets()
 
-        # 加载软件列表
         self.ui.draw_loading_screen(
             self.t.t("Loading Software"),
             self.t.t("Fetching software catalog from repositories...")
@@ -1910,7 +1880,6 @@ class SoftwareCenterApp:
             self.cleanup()
             return
 
-        # 主循环
         while self.running:
             try:
                 if self.manager.selected_software:
@@ -1962,19 +1931,15 @@ class SoftwareCenterApp:
         return False
 
     def update_assets(self) -> None:
-        """检查并更新资源文件"""
         try:
-            # 1. 确定远程 URL
             base_url = self.cfg.server_url
             remote_ver_url = base_url + "assets_version.txt"
             remote_zip_url = base_url + "assets.zip"
 
-            # 2. 本地版本路径
             local_ver_file = self.cfg.root_path + "/mnt/mod/ctrl/configs/software_center/assets_version.txt"
             target_dir = self.cfg.root_path + "/mnt/mod/ctrl/configs/software_center"
 
-            # 3. 读取本地版本
-            local_ver = assets_date  # 模块顶部的 assets_date
+            local_ver = assets_date
             if os.path.exists(local_ver_file):
                 with open(local_ver_file, 'r', encoding='utf-8') as f:
                     stored_ver = f.read().strip()
@@ -1982,7 +1947,6 @@ class SoftwareCenterApp:
                         local_ver = stored_ver
             LOGGER.info(f"Local assets version: {local_ver}")
 
-            # 4. 获取远程版本
             try:
                 resp = requests.get(remote_ver_url, timeout=5)
                 if resp.status_code != 200:
@@ -1994,14 +1958,12 @@ class SoftwareCenterApp:
                 LOGGER.error(f"Error fetching remote assets version: {e}")
                 return
 
-            # 5. 比较版本（使用字符串比较，假设格式一致）
             if remote_ver <= local_ver:
                 LOGGER.info("Assets are up to date")
                 return
 
             LOGGER.info(f"New assets version available: {remote_ver}, downloading...")
 
-            # 6. 下载 assets.zip
             os.makedirs(self.cfg.cache_path, exist_ok=True)
             zip_path = os.path.join(self.cfg.cache_path, "assets.zip")
             try:
@@ -2013,7 +1975,6 @@ class SoftwareCenterApp:
                     for chunk in resp.iter_content(chunk_size=8192):
                         downloaded += len(chunk)
                         f.write(chunk)
-                        # 可选：显示下载进度
                         if total_size:
                             percent = downloaded * 100 // total_size
                             LOGGER.debug(f"Downloading assets: {percent}%")
@@ -2022,9 +1983,7 @@ class SoftwareCenterApp:
                 LOGGER.error(f"Failed to download assets.zip: {e}")
                 return
 
-            # 7. 解压到目标目录
             try:
-                # 确保目标目录存在
                 os.makedirs(target_dir, exist_ok=True)
                 with zipfile.ZipFile(zip_path, 'r') as zf:
                     zf.extractall(target_dir)
@@ -2033,11 +1992,9 @@ class SoftwareCenterApp:
                 LOGGER.error(f"Failed to extract assets.zip: {e}")
                 return
             finally:
-                # 清理临时文件
                 if os.path.exists(zip_path):
                     os.remove(zip_path)
 
-            # 8. 更新本地版本文件
             try:
                 with open(local_ver_file, 'w', encoding='utf-8') as f:
                     f.write(remote_ver)
@@ -2058,11 +2015,10 @@ class SoftwareCenterApp:
         if self.skip_first_input:
             self.input.reset()
             self.skip_first_input = False
-            return  # 跳过第一次输入处理
+            return
 
         self.input.poll()
 
-        # 调试：打印当前按键状态
         if self.input.code_name:
             LOGGER.info(f"Main interface - Key: {self.input.code_name}, Value: {self.input.value}")
 
@@ -2092,7 +2048,7 @@ class SoftwareCenterApp:
                 self.ui_helper.current_page = 0
             self.ui_helper.selected_index = 0
 
-        # Category navigation - 使用方向键
+        # Category navigation
         elif self.input.is_key("L2"):
             categories = list(self.cfg.categories)
             current_index = categories.index(self.manager.current_category)
@@ -2116,23 +2072,19 @@ class SoftwareCenterApp:
         # Software selection
         elif self.input.is_key("DY"):
             software_list = self.get_current_software_list()
-            if software_list:  # 确保列表不为空
-                # 确保 value 是整数
+            if software_list:
                 direction = int(self.input.value)
                 self.ui_helper.selected_index = (self.ui_helper.selected_index + 2 * direction) % len(software_list)
 
         elif self.input.is_key("DX"):
             software_list = self.get_current_software_list()
-            if software_list:  # 确保列表不为空
-                # 确保 value 是整数
+            if software_list:
                 direction = int(self.input.value)
                 if self.ui_helper.selected_index % 2 == 1:
-                    # 当前在右侧，向左移动
                     new_index = self.ui_helper.selected_index - 1
                     if new_index >= 0:
                         self.ui_helper.selected_index = new_index
                 else:
-                    # 当前在左侧，向右移动
                     new_index = self.ui_helper.selected_index + 1
                     if new_index < len(software_list):
                         self.ui_helper.selected_index = new_index
@@ -2152,7 +2104,6 @@ class SoftwareCenterApp:
                 if software.installed:
                     self.show_software_detail()
 
-        # 重置输入状态以便下次处理
         self.input.reset()
 
     def get_current_software_list(self) -> List[SoftwarePackage]:
@@ -2165,7 +2116,6 @@ class SoftwareCenterApp:
         start_idx = self.ui_helper.current_page * self.ui_helper.software_per_page
         end_idx = start_idx + self.ui_helper.software_per_page
 
-        # 确保索引是整数
         start_idx = int(start_idx)
         end_idx = int(end_idx)
 
@@ -2179,16 +2129,11 @@ class SoftwareCenterApp:
 
         LOGGER.info(f"Showing detail for: {self.manager.selected_software.name}")
 
-        # 重置输入状态
         self.input.reset()
         self.skip_first_input = True
 
-        # 进入详情界面的输入处理循环
         while self.manager.selected_software and self.running:
-            # 绘制详情界面
             self.ui_helper.draw_software_detail(self.manager.selected_software)
-
-            # 处理输入
             self.handle_detail_input()
             time.sleep(0.05)
 
@@ -2196,16 +2141,13 @@ class SoftwareCenterApp:
 
     def handle_detail_input(self) -> None:
         """Handle input on detail view"""
-        # 处理首次输入跳过
         if self.skip_first_input:
             self.input.reset()
             self.skip_first_input = False
             return
 
-        # 轮询输入
         self.input.poll()
 
-        # 如果没有输入，直接返回
         if not self.input.code_name:
             return
 
@@ -2217,27 +2159,19 @@ class SoftwareCenterApp:
         LOGGER.info(f"Detail view - Key: {self.input.code_name}, Value: {self.input.value}")
 
         try:
-            # 处理B键返回
             if self.input.is_key("B"):
                 LOGGER.info("Exiting detail view - B button pressed")
                 self.manager.selected_software = None
                 return
 
-            # 处理A键操作
             elif self.input.is_key("A"):
                 LOGGER.info(f"A button pressed for {software.name}")
                 if software.installed:
                     if software.update_available:
-                        # 更新软件
                         self.perform_software_update(software)
-                    #else:
-                        # 启动应用
-                        #self.launch_software(software)
                 else:
-                    # 安装软件
                     self.install_software_from_detail(software)
 
-            # 处理Y键卸载
             elif self.input.is_key("Y") and software.installed and not software.update_available:
                 LOGGER.info(f"Y button pressed for uninstalling {software.name}")
                 self.uninstall_software_from_detail(software)
@@ -2245,7 +2179,6 @@ class SoftwareCenterApp:
         except Exception as e:
             LOGGER.error(f"Error handling detail input: {e}")
         finally:
-            # 重置输入状态以便下次处理
             self.input.reset()
 
     def perform_software_update(self, software: SoftwarePackage) -> None:
@@ -2270,7 +2203,6 @@ class SoftwareCenterApp:
                 "error"
             )
         self.wait_for_input()
-        # 更新后重新绘制详情界面
         self.ui_helper.draw_software_detail(software)
 
     def install_software_from_detail(self, software: SoftwarePackage) -> None:
@@ -2295,7 +2227,6 @@ class SoftwareCenterApp:
                 "error"
             )
         self.wait_for_input()
-        # 安装后重新绘制详情界面
         self.ui_helper.draw_software_detail(software)
 
     def uninstall_software_from_detail(self, software: SoftwarePackage) -> None:
@@ -2320,7 +2251,6 @@ class SoftwareCenterApp:
                 "error"
             )
         self.wait_for_input()
-        # 卸载后重新绘制详情界面
         self.ui_helper.draw_software_detail(software)
 
     def launch_software(self, software: SoftwarePackage) -> None:
@@ -2344,7 +2274,6 @@ class SoftwareCenterApp:
                 LOGGER.info(f"Input received: {self.input.code_name}")
                 break
 
-            # 添加超时机制，避免无限等待
             if time.time() - start_time > 30:  # 30秒超时
                 LOGGER.warning("Input wait timeout")
                 break
