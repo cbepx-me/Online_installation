@@ -190,6 +190,14 @@ class Config:
     }
 
     # Software Repositories
+    mirrors_nt = [
+        {
+            "name": "localhost",
+            "url": "http://192.168.1.227/download/software_list.json",
+            "region": "local",
+            "server": "http://192.168.1.227/download/"
+        }
+    ]
     mirrors = [
         {
             "name": "Gitcode",
@@ -203,7 +211,6 @@ class Config:
             "region": "Global",
             "server": "https://github.com/cbepx-me/Online_installation/releases/download/download/"
         }
-
     ]
     repositories = [
         {
@@ -217,10 +224,14 @@ class Config:
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0'
     }
-
-    fallback_mirror = mirrors[0]
+    if os.name == 'nt':
+        fallback_mirror = mirrors_nt[0]
+        mirrors_server = mirrors_nt
+    else:
+        fallback_mirror = mirrors[0]
+        mirrors_server = mirrors
     speeds = []
-    for mirror in mirrors:
+    for mirror in mirrors_server:
         try:
             start = time.time()
             response = requests.get(mirror["url"], timeout=3, headers=headers, stream=True)
@@ -302,6 +313,7 @@ class SoftwarePackage:
     description: str
     category: str
     size: int
+    md5: int
     download_url: str
     description_zh: str = ""
     description_en: str = ""
@@ -393,7 +405,7 @@ class InputHandler:
                 sdl2.SDLK_LEFT: ("DX", -1),
                 sdl2.SDLK_RIGHT: ("DX", 1),
                 sdl2.SDLK_RETURN: ("A", 1),
-                sdl2.SDLK_SPACE: ("A", 1),
+                sdl2.SDLK_SPACE: ("Y", 1),
                 sdl2.SDLK_ESCAPE: ("SELECT", 1),
                 sdl2.SDLK_BACKSPACE: ("B", 1),
                 sdl2.SDLK_TAB: ("L1", 1),
@@ -1059,7 +1071,7 @@ class SoftwareManager:
             has_install = os.path.isfile(install_script)
             has_uninstall = os.path.isfile(uninstall_script)
 
-            if has_install:
+            if has_install and os.name != 'nt':
                 LOGGER.info(f"Executing install.sh for {software.name}")
                 self.ui.tips_info(self.t.t("Installing") + ' ...')
                 try:
@@ -1084,7 +1096,7 @@ class SoftwareManager:
                     shutil.rmtree(self.cfg.cache_path, ignore_errors=True)
                     return False
 
-            if has_uninstall:
+            if has_uninstall and os.name != 'nt':
                 LOGGER.info(f"Copying uninstall.sh from {software.name}")
                 uninstall_dir = os.path.join(self.cfg.uninstall_path, software.category, software.id)
                 os.makedirs(uninstall_dir, exist_ok=True)
@@ -1626,18 +1638,37 @@ class SoftwareCenterUI:
         # Installation info
         info_y = content_top + 20
         size_mb = software.size // (1024 * 1024)
-        self.ui.text((int(30 + panel_width // 2), info_y), f"{self.t.t('Size')}: {size_mb}MB", font=16)
-        self.ui.text((int(30 + panel_width // 2), info_y + 20), f"{self.t.t('Category')}: {self.get_category_display_name(software.category)}",
-                     font=16)
+        # 获取字体对象
+        font_size = 16
+        try:
+            font = ImageFont.truetype(self.cfg.font_file, font_size)
+        except:
+            font = ImageFont.load_default()
+
+        size_text = f"{self.t.t('Size')}: {size_mb}MB"
+        cat_text = f"{self.t.t('Category')}: {self.get_category_display_name(software.category)}"
+
+        size_width = self.ui.active_draw.textlength(size_text, font=font)
+        cat_width = self.ui.active_draw.textlength(cat_text, font=font)
+
+        right_start_x = int(30 + panel_width // 2)
+        right_end_x = self.ui.x_size - 30
+        available_width = right_end_x - right_start_x
+
+        if size_width + cat_width + 10 <= available_width:
+            self.ui.text((right_start_x, info_y), size_text, font=font_size)
+            self.ui.text((right_start_x + size_width + 10, info_y), cat_text, font=font_size)
+        else:
+            self.ui.text((right_start_x, info_y), size_text, font=font_size)
+            self.ui.text((right_start_x, info_y + 20), cat_text, font=font_size)
 
         if software.changelog:
-            changelog_y = info_y + 40
+            changelog_y = info_y + 20
             right_start_x = 30 + panel_width // 2
             right_end_x = self.ui.x_size - 30
             right_width = right_end_x - right_start_x
-            self.ui.text((int(30 + panel_width // 2), changelog_y), f"{self.t.t('Changelog')}:",
-                         font=16, bold=True)
-            wrapped_desc = self.wrap_text(software.changelog, 16, right_width)
+            changelog_info = f"{self.t.t('Changelog')}: {software.changelog}"
+            wrapped_desc = self.wrap_text(changelog_info, 16, right_width)
 
             available_lines = 3
             display_lines = wrapped_desc[:available_lines]
@@ -1645,7 +1676,7 @@ class SoftwareCenterUI:
             for i, line in enumerate(display_lines):
                 if i == available_lines - 1:
                     line = line[:-3] + "..."
-                self.ui.text((int(30 + panel_width // 2), changelog_y + 25 + i * 25), line, font=16,
+                self.ui.text((int(30 + panel_width // 2), changelog_y + i * 25), line, font=16,
                              color=self.cfg.COLOR_TEXT_SECONDARY)
 
         # Install button
