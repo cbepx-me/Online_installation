@@ -1,132 +1,28 @@
 {
-  "last_updated": "2024-01-15T10:00:00Z",
-  "repository_name": "StockOS 官方软件仓库",
+  "last_updated": "2026-03-13T06:03:34Z",
+  "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.0",
   "software": [
     {
-      "id": "retroarch",
-      "name": "RetroArch",
-      "version": "1.15.0",
-      "description_zh": "全能游戏模拟器前端，支持多种游戏机平台全能游戏模拟器前端，支持多种游戏机平台全能游戏模拟器前端，支持多种游戏机平台全能游戏模拟器前端，支持多种游戏机平台全能游戏模拟器前端，支持多种游戏机平台全能游戏模拟器前端，支持多种游戏机平台",
-      "description_en": "Universal Game Simulator Front End, supports multiple game console platforms Universal Game Simulator Front End, supports multiple game console platform Universal Game Simulator Front End, supports multiple game console platform Universal Game Simulator Front End, supports multiple game console platform Universal Game Simulator Front End, supports multiple game console platform Universal Game Simulator Front End, supports multiple game console platform Universal Game Simulator Front End, supports multiple game console platforms",
-      "category": "emulators",
-      "size": 52428800,
-      "download_url": "retroarch_1.15.0.zip",
-      "icon_url": "retroarch.png",
-      "author": "Libretro Team",
-      "screenshots": [
-        "retroarch_1.jpg",
-        "retroarch_2.jpg"
-      ],
-      "dependencies": [],
-      "compatibility": ["RG35xxH", "RG35xxSP", "RG40xxH"],
-      "min_os_version": "20240101",
-      "changelog_zh": "修复了音频延迟问题, 改进了手柄兼容性，修复了音频延迟问题, 改进了手柄兼容性",
-      "changelog_en": "Fixed audio delay issue, improved controller compatibility, fixed audio delay issue, improved controller compatibility"
-    },
-    {
-      "id": "doom",
-      "name": "DOOM",
-      "version": "1.9",
-      "description": "经典第一人称射击游戏",
-      "category": "games",
-      "size": 4194304,
-      "download_url": "doom_1.9.zip",
-      "icon_url": "doom.png",
-      "author": "id Software",
-      "screenshots": [
-        "doom_1.jpg"
-      ],
-      "dependencies": [],
-      "compatibility": ["RG35xxH", "RG35xxSP", "RG40xxH", "RG35xx+"],
-      "min_os_version": "20231201"
-    },
-    {
-      "id": "file_manager",
-      "name": "文件管理器",
-      "version": "2.1.0",
-      "description": "强大的文件管理工具，支持压缩包操作",
-      "category": "tools",
-      "size": 10485760,
-      "download_url": "file_manager_2.1.0.zip",
-      "icon_url": "file_manager.png",
-      "author": "StockOS Team",
-      "screenshots": [
-        "file_manager_1.jpg",
-        "file_manager_2.jpg"
-      ],
-      "dependencies": [],
-      "compatibility": ["RG35xxH", "RG35xxSP", "RG40xxH", "RG35xx+", "RG28xx"],
-      "min_os_version": "20231101"
-    },
-    {
-      "id": "dark_theme",
-      "name": "深色主题包",
-      "version": "1.2.0",
-      "description": "优雅的深色系统主题，保护视力",
-      "category": "themes",
-      "size": 15728640,
-      "download_url": "dark_theme_1.2.0.zip",
-      "icon_url": "dark_theme.png",
-      "author": "Theme Designer",
-      "screenshots": [
-        "dark_theme_1.jpg",
-        "dark_theme_2.jpg"
-      ],
-      "dependencies": [],
-      "compatibility": ["RG35xxH", "RG35xxSP", "RG40xxH", "RG35xx+"],
-      "min_os_version": "20240101"
-    },
-    {
-      "id": "quake",
-      "name": "Quake",
-      "version": "1.0",
-      "description": "传奇第一人称射击游戏",
-      "category": "games",
-      "size": 8388608,
-      "download_url": "quake_1.0.zip",
-      "icon_url": "quake.png",
-      "author": "id Software",
-      "screenshots": [
-        "quake_1.jpg"
-      ],
-      "dependencies": [],
-      "compatibility": ["RG35xxH", "RG35xxSP", "RG40xxH"],
-      "min_os_version": "20231201"
-    },
-    {
-      "id": "calculator",
-      "name": "科学计算器",
-      "version": "1.0.3",
-      "description": "功能丰富的科学计算器应用",
-      "category": "tools",
-      "size": 2097152,
-      "download_url": "calculator_1.0.3.zip",
-      "icon_url": "calculator.png",
-      "author": "StockOS Team",
-      "screenshots": [
-        "calculator_1.jpg"
-      ],
-      "dependencies": [],
-      "compatibility": ["RG35xxH", "RG35xxSP", "RG40xxH", "RG35xx+", "RG28xx"],
-      "min_os_version": "20231001"
-    },
-    {
       "id": "rixelhk",
-      "name": "RixelHK下载器",
+      "name": "RixelHK",
       "version": "1.15",
-      "description": "RixelHK是一款帮助用户快速下载、安装各类游戏的应用程序。它提供丰富的游戏资源支持一键下载和自动安装，简化了游戏下载过程。用户可以按游戏类型进行分类查找，为用户提供更流畅和个性化的游戏体验。",
+      "description_en": "RixelHK is an application designed to help users quickly download and install various games. It offers a wide range of game resources with one-click download and automatic installation features, streamlining the game download process. Users can browse by game category for a more seamless and personalized gaming experience.",
+      "description_zh": "RixelHK 是一款帮助用户快速下载、安装各类游戏的应用程序。它提供丰富的游戏资源支持一键下载和自动安装，简化了游戏下载过程。用户可以按游戏类型进行分类查找，为用户提供更流畅和个性化的游戏体验。",
       "category": "tools",
-      "size": 2097152,
       "download_url": "RixelHK-H700-US-1.15-RC.zip",
+      "size": 24339990,
+      "md5": "9bf57e9825208b3d88435cead410595b",
       "icon_url": "rixelhk.png",
-      "author": "StockOS Team",
+      "author": "RixelHK",
       "screenshots": [
         "rixelhk_1.jpg"
       ],
       "dependencies": [],
-      "compatibility": ["RG35xxH", "RG35xxSP", "RG40xxH", "RG35xx+", "RG28xx"],
-      "min_os_version": "20231001"
+      "compatibility": [],
+      "min_os_version": "20231001",
+      "changelog_zh": "支持 H700 Linux 设备",
+      "changelog_en": "Support for H700 Linux devices"
     }
   ]
 }
