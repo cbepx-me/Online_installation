@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-03-13T06:03:34Z",
+  "last_updated": "2026-04-05T06:43:15Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.0",
   "software": [
@@ -20,9 +20,57 @@
       ],
       "dependencies": [],
       "compatibility": [],
-      "min_os_version": "20231001",
+      "min_os_version": "",
       "changelog_zh": "支持 H700 Linux 设备",
-      "changelog_en": "Support for H700 Linux devices"
+      "changelog_en": "Support for H700 Linux devices",
+      "instruction_zh": "请到 APPS 中运行。",
+      "instruction_en": "Please run it in APPS."
+    },
+    {
+      "id": "PortMaster-patch",
+      "name": "PortMaster Patch",
+      "version": "",
+      "description_en": "To achieve 100% port operation on StockOS MOD, you need to install this patch to fix all known issues in the system.",
+      "description_zh": "安装这个补丁，修复系统中所有已知问题，实现 100% 在 stockOS MOD 上运行 port。",
+      "category": "games",
+      "download_url": "PortMaster-patch.zip",
+      "size": 69985859,
+      "md5": "fea126fbf2a301277f182041af83e104",
+      "icon_url": "PortMaster-patch.png",
+      "author": "kai4man",
+      "screenshots": [
+        "PortMaster-patch_1.jpg"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "请到 APPS 中运行。",
+      "instruction_en": "Please run it in APPS."
+    },
+    {
+      "id": "System_Monitor",
+      "name": "System Monitor",
+      "version": "",
+      "description_en": "System monitor: a program used to display hardware temperature, battery information, and other content of the system.",
+      "description_zh": "系统监视器：用来显示系统的硬件温度，电池信息等内容的程序。",
+      "category": "tools",
+      "download_url": "System_Monitor.zip",
+      "size": 339448,
+      "md5": "a77e83ff5a78ef85ca0d8672080a38f4",
+      "icon_url": "System_Monitor.png",
+      "author": "kai4man",
+      "screenshots": [
+        "System_Monitor.jpg"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "请到 APPS 中运行。",
+      "instruction_en": "Please run it in APPS."
     }
   ]
 }
