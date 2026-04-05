@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-05T06:43:15Z",
+  "last_updated": "2026-04-05T07:31:13Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.0",
   "software": [
@@ -63,6 +63,29 @@
       "author": "kai4man",
       "screenshots": [
         "System_Monitor.jpg"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "请到 APPS 中运行。",
+      "instruction_en": "Please run it in APPS."
+    },
+    {
+      "id": "Image_Browser",
+      "name": "Image Browser",
+      "version": "1.2",
+      "description_en": "Image browser with folder navigation and slideshow.",
+      "description_zh": "支持目录浏览与幻灯片播放的图片浏览器。",
+      "category": "tools",
+      "download_url": "Image_Browser.zip",
+      "size": 339448,
+      "md5": "a77e83ff5a78ef85ca0d8672080a38f4",
+      "icon_url": "Image_Browser.png",
+      "author": "G.R.H",
+      "screenshots": [
+        "Image_Browser.jpg"
       ],
       "dependencies": [],
       "compatibility": [],
