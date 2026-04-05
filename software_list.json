@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-05T07:31:13Z",
+  "last_updated": "2026-04-05T07:47:32Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.0",
   "software": [
@@ -86,6 +86,29 @@
       "author": "G.R.H",
       "screenshots": [
         "Image_Browser.jpg"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "请到 APPS 中运行。",
+      "instruction_en": "Please run it in APPS."
+    },
+    {
+      "id": "clock",
+      "name": "Clock",
+      "version": "1.2",
+      "description_en": "Clock, timer, stopwatch & weather display.",
+      "description_zh": "时钟、计时器、秒表与天气显示工具。",
+      "category": "tools",
+      "download_url": "Clock.zip",
+      "size": 558410,
+      "md5": "b9a4dce4a1eb350efd1ecf53c26b77cc",
+      "icon_url": "Clock.png",
+      "author": "G.R.H",
+      "screenshots": [
+        "Clock.jpg"
       ],
       "dependencies": [],
       "compatibility": [],
