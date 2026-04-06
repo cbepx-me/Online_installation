@@ -655,13 +655,26 @@ class UIRenderer:
             target_width = self.x_size - target_x
         if target_height is None:
             target_height = self.y_size - target_y
-        img = Image.open(image_path)
-        img.thumbnail((target_width, target_height))
-        paste_x = target_x + (target_width - img.width) // 2
-        paste_y = target_y + (target_height - img.height) // 2
-        if self.hw_info == 3 and rota == 1 and self.hdmi_info != "HDMI=1":
-            img = img.rotate(-90, expand=True)
-        self.active_image.paste(img, (paste_x, paste_y))
+            
+        try:
+            img = Image.open(image_path)
+            max_width, max_height = 1920, 1080
+            if img.width > max_width or img.height > max_height:
+                LOGGER.warning(f"Image {image_path} exceeds max resolution, resizing...")
+                img.thumbnail((max_width, max_height))
+
+            img.thumbnail((target_width, target_height))
+            paste_x = target_x + (target_width - img.width) // 2
+            paste_y = target_y + (target_height - img.height) // 2
+
+            if self.hw_info == 3 and rota == 1 and self.hdmi_info != "HDMI=1":
+                img = img.rotate(-90, expand=True)
+
+            self.active_image.paste(img, (paste_x, paste_y))
+
+        except Exception as e:
+            LOGGER.error(f"Failed to load image {image_path}: {e}")
+            return
 
     def rect(self, xy, fill=None, outline=None, width: int = 1, radius: int = 0, shadow: bool = False) -> None:
         if shadow and radius > 0:
@@ -924,6 +937,7 @@ class SoftwareManager:
         self.current_category = "all"
         self.selected_software: Optional[SoftwarePackage] = None
         self.search_query = ""
+        self.board_info = Path(self.cfg.root_path + "/mnt/vendor/oem/board.ini").read_text().splitlines()[0]
 
         self.session = requests.Session()
         self.session.headers.update(self.cfg.headers)
@@ -988,6 +1002,11 @@ class SoftwareManager:
 
                 for i, item in enumerate(software_data.get('software', [])):
                     try:
+                        compatibility = item.get('compatibility', [])
+                        if compatibility and self.board_info not in compatibility:
+                            LOGGER.info(f"Skipping {item.get('name', 'unknown')} due to compatibility mismatch")
+                            continue
+                    
                         description = item.get(desc_key) or item.get('description', '')
                         item['description'] = description
                         changelog = item.get(chang_key) or item.get('changelog', '')
@@ -1520,9 +1539,14 @@ class SoftwareCenterUI:
             button_y = y2 - 30
 
             if software.installed:
+                uninstall_dir = os.path.join(self.cfg.uninstall_path, software.category, software.id)
+                uninstall_script = os.path.join(uninstall_dir, "uninstall.sh")
                 if software.update_available:
                     self.ui.button([button_x, button_y, x2 - 5, y2 - 5],
                                    self.t.t("Update"), "A", primary=True, type=1)
+                elif not os.path.exists(uninstall_script):
+                    self.ui.button([button_x, button_y, x2 - 5, y2 - 5],
+                               self.t.t("REINST"), "A", disabled=True, type=1)
                 else:
                     self.ui.button([button_x, button_y, x2 - 5, y2 - 5],
                                    self.t.t("UNINST"), "A", disabled=True, type=1)
@@ -1541,7 +1565,7 @@ class SoftwareCenterUI:
             "themes": "☯"
         }
 
-        if id is None or icon_url is None:
+        if id is None or icon_url is None or icon_url == "":
             return {"txt": icons.get(category, "☆")}
         else:
             try:
@@ -1613,7 +1637,7 @@ class SoftwareCenterUI:
 
         # Software details
         detail_x = icon_x + icon_size
-        self.ui.text((detail_x, content_top + 18), software.name, font=24, bold=True)
+        self.ui.text((detail_x, content_top + 18), software.name, font=22, bold=True)
         self.ui.text((detail_x, content_top + 50), f"v{software.version}" if software.version else "", font=16,
                      color=self.cfg.COLOR_TEXT_SECONDARY)
 
@@ -1624,17 +1648,21 @@ class SoftwareCenterUI:
         if software.screenshots:
             screenshot = software.screenshots[0]
             screenshot_path = os.path.join(self.cfg.screenshots_path, software.id, screenshot)
-            try:
-                if os.path.exists(screenshot_path):
-                    img = Image.open(screenshot_path)
-                    ratio = img.size[1] / img.size[0]
-                    target_x = int(30 + panel_width // 2)
-                    target_width = int(panel_width // 2 - 30)
-                    target_height = int(target_width * ratio)
-                    target_y = int(content_top + panel_height - target_height -15)
-                    self.ui.display_image(screenshot_path, target_x, target_y, target_width, target_height)
-            except Exception as e:
-                LOGGER.error(f"Failed to load screenshot {screenshot_path}: {e}")
+        else:
+            screenshot_path = os.path.join(self.cfg.screenshots_path, "default.png")
+        if not os.path.exists(screenshot_path):
+            screenshot_path = os.path.join(self.cfg.screenshots_path, "default.png")
+
+        try:
+            img = Image.open(screenshot_path)
+            ratio = img.size[1] / img.size[0]
+            target_x = int(30 + panel_width // 2)
+            target_width = int(panel_width // 2 - 30)
+            target_height = int(target_width * ratio)
+            target_y = int(content_top + panel_height - target_height -15)
+            self.ui.display_image(screenshot_path, target_x, target_y, target_width, target_height)
+        except Exception as e:
+            LOGGER.error(f"Failed to load screenshot {screenshot_path}: {e}")
 
         # Description
         desc_y = content_top + 100
@@ -1652,14 +1680,15 @@ class SoftwareCenterUI:
 
         # Installation info
         info_y = content_top + 20
-        size_mb = software.size // (1024 * 1024)
+        size_mb = software.size // (1024 * 1024) if software.size >= 1024 * 1024 else software.size // 1024
+        unit = "MB" if software.size >= 1024 * 1024 else "KB"
         font_size = 16
         try:
             font = ImageFont.truetype(self.cfg.font_file, font_size)
         except:
             font = ImageFont.load_default()
 
-        size_text = f"{self.t.t('Size')}: {size_mb}MB"
+        size_text = f"{self.t.t('Size')}: {size_mb}{unit}"
         cat_text = f"{self.t.t('Category')}: {self.get_category_display_name(software.category)}"
 
         size_width = self.ui.active_draw.textlength(size_text, font=font)
@@ -1701,16 +1730,21 @@ class SoftwareCenterUI:
         back_x = self.ui.x_size - button_width + 20
 
         if software.installed:
+            uninstall_dir = os.path.join(self.cfg.uninstall_path, software.category, software.id)
+            uninstall_script = os.path.join(uninstall_dir, "uninstall.sh")
             if software.update_available:
-                self.ui.button([app_x, button_y, app_x + button_width, button_y + 40],
+                self.ui.button([button_x, button_y, button_x + button_width, button_y + 40],
                                self.t.t('Update'), "A", True)
+            elif not os.path.exists(uninstall_script):
+                self.ui.button([button_x, button_y, button_x + button_width, button_y + 40],
+                               self.t.t("Reinstall"), "A", False)
             else:
                 # Uninstall button
                 self.ui.button([button_x, button_y, button_x + button_width, button_y + 40],
                                self.t.t("Uninstall"), "Y", False)
         else:
             self.ui.button([button_x, button_y, button_x + button_width, button_y + 40],
-                           f"{self.t.t('Install')} ({size_mb}MB)", "A", True, type=2)
+                           f"{self.t.t('Install')} ({size_mb}{unit})", "A", True, type=2)
 
         # Back button
         self.ui.button([back_x, button_y, back_x + 120, button_y + 40],
@@ -2259,6 +2293,8 @@ class SoftwareCenterApp:
                 if software.installed:
                     if software.update_available:
                         self.perform_software_update(software)
+                    else:
+                        self.install_software_from_detail(software)
                 else:
                     self.install_software_from_detail(software)
 
