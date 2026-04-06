@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-06T08:33:39Z",
+  "last_updated": "2026-04-06T09:33:44Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.1",
   "software": [
@@ -142,19 +142,19 @@
       "instruction_en": "Please run it in APPS."
     },
     {
-      "id": "theme_Pokémon_640x480",
+      "id": "theme_Pokemon_640x480",
       "name": "【柚子主题】宝可梦",
       "version": "3.0",
       "description_en": "Pok é mon Theme.",
       "description_zh": "宝可梦主题。",
       "category": "themes",
-      "download_url": "theme_Pokémon_640x480.zip",
+      "download_url": "theme_Pokemon_640x480.zip",
       "size": 38778668,
       "md5": "7b1ce4d7111f922fc73cb57722f7f19e",
       "icon_url": "",
       "author": "柚子",
       "screenshots": [
-        "theme_Pokémon_640x480.png"
+        "theme_Pokemon_640x480.jpg"
       ],
       "dependencies": [],
       "compatibility": [
@@ -185,7 +185,7 @@
       "icon_url": "",
       "author": "柚子",
       "screenshots": [
-        "theme_Mario_720x480.png"
+        "theme_Mario_720x480.jpg"
       ],
       "dependencies": [],
       "compatibility": [
