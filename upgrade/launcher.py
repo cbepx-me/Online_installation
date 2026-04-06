@@ -80,33 +80,37 @@ class Config:
         "pt_BR",
     )
 
-    COLOR_PRIMARY: str = "#00f3ff"
-    COLOR_PRIMARY_DARK: str = "#4f46e5"
-    COLOR_DANGER: str = "#ef4444"
-    COLOR_SUCCESS: str = "#22c55e"
-    COLOR_WARNING: str = "#f59e0b"
-    COLOR_SECONDARY: str = "#f59e0b"
+    # 主色调（深蓝色系）
+    COLOR_PRIMARY: str = "#1E90FF"  # 主按钮、标题等
+    COLOR_PRIMARY_DARK: str = "#1B75D0"  # 深色主色调
+    COLOR_ACCENT: str = "#00BFFF"  # 辅助色（如高亮）
+    COLOR_SUCCESS: str = "#2ECC71"  # 成功状态
+    COLOR_WARNING: str = "#F1C40F"  # 警告状态
+    COLOR_DANGER: str = "#E74C3C"  # 错误状态
 
-    COLOR_BG: str = "#0a0c12"
-    COLOR_BG_LIGHT: str = "#141a24"
-    COLOR_BG_GRADIENT: str = "#1a1f2f"
-    COLOR_ACCENT: str = "#10b981"
+    # 背景色
+    COLOR_BG: str = "#121212"  # 主背景色（深灰）
+    COLOR_BG_LIGHT: str = "#1E1E1E"  # 浅色背景
+    COLOR_BG_GRADIENT: str = "#2C2C2C"  # 渐变背景
 
-    COLOR_NEON_BORDER: str = "#00f3ff"
+    # 卡片和边框
+    COLOR_CARD: str = "#0f1322"  # 卡片背景
+    COLOR_CARD_LIGHT: str = "#2A2A2A"  # 浅色卡片
+    COLOR_CARD_HOVER: str = "#333333"  # 卡片悬停效果
+    COLOR_NEON_BORDER: str = "#1E90FF"  # 边框颜色
 
-    COLOR_CARD: str = "#0f1322"
-    COLOR_CARD_LIGHT: str = "#1a1f32"
-    COLOR_CARD_HOVER: str = "#222842"
+    # 文字颜色
+    COLOR_TEXT: str = "#E0E0E0"  # 主文字颜色（浅灰）
+    COLOR_TEXT_SECONDARY: str = "#B0B0B0"  # 次要文字颜色
+    COLOR_TEXT_TERTIARY: str = "#808080"  # 辅助文字颜色
 
-    COLOR_TEXT: str = "#ffffff"
-    COLOR_TEXT_SECONDARY: str = "#a0b0cc"
-    COLOR_TEXT_TERTIARY: str = "#607080"
+    # 阴影和光效
+    COLOR_SHADOW: str = "#00000080"  # 阴影（透明黑）
+    COLOR_GLOW: str = "#1E90FF33"  # 光效（透明蓝）
 
-    COLOR_SHADOW: str = "#000000cc"
-    COLOR_GLOW: str = "#6366f155"
-
-    COLOR_BORDER_LIGHT: str = "#475569"
-    COLOR_BUTTON_PRIMARY: str = "#4f46e5"
+    # 按钮颜色
+    COLOR_BUTTON_PRIMARY: str = "#1E90FF"  # 主按钮颜色
+    COLOR_BORDER_LIGHT: str = "#3A3A3A"  # 边框颜色
 
     if os.name == "nt":
         root_path = APP_PATH + "/sys"
@@ -600,21 +604,21 @@ class UIRenderer:
 
         for i in range(header_height):
             ratio = i / header_height
-            r = self.blend_colors(self.cfg.COLOR_PRIMARY_DARK, self.cfg.COLOR_BG_GRADIENT, ratio)
-            self.rect([0, i, self.x_size, i + 1], fill=r)
+            color = self.blend_colors(self.cfg.COLOR_PRIMARY_DARK, self.cfg.COLOR_BG_GRADIENT, ratio)
+            self.rect([0, i, self.x_size, i + 1], fill=color)
 
-        light_rect = [0, header_height - 10, self.x_size, header_height - 6]
-        self.rect(light_rect, fill=self.cfg.COLOR_PRIMARY + "80", radius=0)
+        light_rect = [0, header_height - 2, self.x_size, header_height]
+        self.rect(light_rect, fill=self.cfg.COLOR_BG_LIGHT + "40", radius=0)
 
         self.text((self.x_size // 2, 35), title, font=32, anchor="mm",
-                  bold=True, shadow=True, color=self.cfg.COLOR_PRIMARY)
+                bold=True, shadow=True, color=self.cfg.COLOR_TEXT)
 
         if subtitle:
             self.text((self.x_size // 2, 65), subtitle, font=18, anchor="mm",
-                      color=self.cfg.COLOR_TEXT_SECONDARY, shadow=True)
+                    color=self.cfg.COLOR_TEXT_SECONDARY, shadow=True)
 
         self.text((self.x_size - 50, 65), f'v{ver}', font=18, anchor="mm",
-                  bold=True, color=self.cfg.COLOR_TEXT_SECONDARY)
+                bold=True, color=self.cfg.COLOR_TEXT_SECONDARY)
 
     def blend_colors(self, color1: str, color2: str, ratio: float) -> str:
         r1, g1, b1 = int(color1[1:3], 16), int(color1[3:5], 16), int(color1[5:7], 16)
@@ -1108,16 +1112,16 @@ class LauncherApp:
         card_rect = [x, y, x + self.card_width, y + self.card_height]
 
         if is_selected:
-            for offset in range(4, 0, -1):
-                alpha = 60 - offset * 10
+            for offset in range(6, 0, -1):
+                alpha = 80 - offset * 10
                 glow_color = self.cfg.COLOR_PRIMARY + f"{alpha:02x}"
                 glow_rect = [x - offset, y - offset, x + self.card_width + offset, y + self.card_height + offset]
                 self.ui.rect(glow_rect, fill=glow_color, radius=16)
-            fill_color = self.cfg.COLOR_CARD_HOVER
-            border_color = self.cfg.COLOR_PRIMARY
+            fill_color = self.cfg.COLOR_PRIMARY_DARK
+            border_color = self.cfg.COLOR_ACCENT
         else:
             fill_color = self.cfg.COLOR_CARD
-            border_color = self.cfg.COLOR_NEON_BORDER
+            border_color = self.cfg.COLOR_BORDER_LIGHT
 
         self.ui.rect(card_rect, fill=fill_color, outline=border_color, width=2, radius=16, shadow=True)
 
@@ -1125,14 +1129,14 @@ class LauncherApp:
         icon_center_x = x + 50
         icon_center_y = y + self.card_height // 2
         self.ui.circle((icon_center_x, icon_center_y), icon_radius, fill=self.cfg.COLOR_BG_LIGHT,
-                       outline=self.cfg.COLOR_PRIMARY if is_selected else self.cfg.COLOR_BORDER_LIGHT)
+                    outline=self.cfg.COLOR_PRIMARY if is_selected else self.cfg.COLOR_BORDER_LIGHT)
         self.ui.text((icon_center_x, icon_center_y), item["icon"], font=32, anchor="mm",
-                     color=self.cfg.COLOR_PRIMARY if is_selected else self.cfg.COLOR_TEXT)
+                    color=self.cfg.COLOR_TEXT if is_selected else self.cfg.COLOR_TEXT_SECONDARY)
 
         name_x = x + 100
         name_y = y + 40
         self.ui.text((name_x, name_y), item["name"], font=20, anchor="lm",
-                     bold=is_selected, color=self.cfg.COLOR_TEXT if is_selected else self.cfg.COLOR_TEXT_SECONDARY)
+                    bold=is_selected, color=self.cfg.COLOR_TEXT if is_selected else self.cfg.COLOR_TEXT_SECONDARY)
 
         desc_x = x + 100
         desc_y = y + 70
@@ -1140,7 +1144,7 @@ class LauncherApp:
         if len(desc) > 30:
             desc = desc[:27] + "..."
         self.ui.text((desc_x, desc_y), desc, font=14, anchor="lm",
-                     color=self.cfg.COLOR_TEXT_TERTIARY)
+                    color=self.cfg.COLOR_TEXT_TERTIARY if not is_selected else self.cfg.COLOR_TEXT)
 
     def _draw_page_indicator(self):
         dot_radius = 6
