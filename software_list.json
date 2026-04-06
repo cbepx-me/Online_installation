@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-04-05T08:27:17Z",
+  "last_updated": "2026-04-06T08:16:06Z",
   "repository_name": "StockOS Software Repository",
-  "repository_version": "1.0.0",
+  "repository_version": "1.0.1",
   "software": [
     {
       "id": "rixelhk",
@@ -140,6 +140,63 @@
       "changelog_en": "",
       "instruction_zh": "请到 APPS 中运行。",
       "instruction_en": "Please run it in APPS."
+    },
+    {
+      "id": "theme_Pokémon_640x480",
+      "name": "【柚子主题】宝可梦",
+      "version": "3.0",
+      "description_en": "Pok é mon Theme.",
+      "description_zh": "宝可梦主题。",
+      "category": "themes",
+      "download_url": "theme_Pokémon_640x480.zip",
+      "size": 38778668,
+      "md5": "7b1ce4d7111f922fc73cb57722f7f19e",
+      "icon_url": "theme_Pokémon_640x480.png",
+      "author": "柚子",
+      "screenshots": [
+        "theme_Pokémon_640x480.jpg"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG28xx",
+        "RG35xx+_P",
+        "RG35xxH",
+        "RG35xxSP",
+        "RG40xxH",
+        "RG40xxV",
+        "RG35xxPRO"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "theme_Mario_720x480",
+      "name": "【柚子主题】马里奥",
+      "version": "3.0",
+      "description_en": "Mario Theme.",
+      "description_zh": "马里奥主题。",
+      "category": "themes",
+      "download_url": "theme_Mario_720x480.zip",
+      "size": 35307464,
+      "md5": "5736a876f6de42dc4291d8fb8f80fd8d",
+      "icon_url": "theme_Mario_720x480.png",
+      "author": "柚子",
+      "screenshots": [
+        "theme_Mario_720x480.jpg"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG34xx",
+        "RG34xxSP"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
     }
   ]
 }
