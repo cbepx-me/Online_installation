@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-06T08:16:06Z",
+  "last_updated": "2026-04-06T08:33:39Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.1",
   "software": [
@@ -151,10 +151,10 @@
       "download_url": "theme_Pokémon_640x480.zip",
       "size": 38778668,
       "md5": "7b1ce4d7111f922fc73cb57722f7f19e",
-      "icon_url": "theme_Pokémon_640x480.png",
+      "icon_url": "",
       "author": "柚子",
       "screenshots": [
-        "theme_Pokémon_640x480.jpg"
+        "theme_Pokémon_640x480.png"
       ],
       "dependencies": [],
       "compatibility": [
@@ -180,12 +180,12 @@
       "description_zh": "马里奥主题。",
       "category": "themes",
       "download_url": "theme_Mario_720x480.zip",
-      "size": 35307464,
-      "md5": "5736a876f6de42dc4291d8fb8f80fd8d",
-      "icon_url": "theme_Mario_720x480.png",
+      "size": 35293440,
+      "md5": "83526d6f1388d1ca98b1c5379ec7628e",
+      "icon_url": "",
       "author": "柚子",
       "screenshots": [
-        "theme_Mario_720x480.jpg"
+        "theme_Mario_720x480.png"
       ],
       "dependencies": [],
       "compatibility": [
