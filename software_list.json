@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-04-06T09:33:44Z",
+  "last_updated": "2026-04-29T04:59:56Z",
   "repository_name": "StockOS Software Repository",
-  "repository_version": "1.0.1",
+  "repository_version": "1.0.2",
   "software": [
     {
       "id": "rixelhk",
@@ -40,75 +40,6 @@
       "author": "kai4man",
       "screenshots": [
         "PortMaster-patch_1.jpg"
-      ],
-      "dependencies": [],
-      "compatibility": [],
-      "min_os_version": "",
-      "changelog_zh": "",
-      "changelog_en": "",
-      "instruction_zh": "请到 APPS 中运行。",
-      "instruction_en": "Please run it in APPS."
-    },
-    {
-      "id": "System_Monitor",
-      "name": "System Monitor",
-      "version": "",
-      "description_en": "System monitor: a program used to display hardware temperature, battery information, and other content of the system.",
-      "description_zh": "系统监视器：用来显示系统的硬件温度，电池信息等内容的程序。",
-      "category": "tools",
-      "download_url": "System_Monitor.zip",
-      "size": 339448,
-      "md5": "a77e83ff5a78ef85ca0d8672080a38f4",
-      "icon_url": "System_Monitor.png",
-      "author": "kai4man",
-      "screenshots": [
-        "System_Monitor.jpg"
-      ],
-      "dependencies": [],
-      "compatibility": [],
-      "min_os_version": "",
-      "changelog_zh": "",
-      "changelog_en": "",
-      "instruction_zh": "请到 APPS 中运行。",
-      "instruction_en": "Please run it in APPS."
-    },
-    {
-      "id": "Image_Browser",
-      "name": "Image Browser",
-      "version": "1.2",
-      "description_en": "Image browser with folder navigation and slideshow.",
-      "description_zh": "支持目录浏览与幻灯片播放的图片浏览器。",
-      "category": "tools",
-      "download_url": "Image_Browser.zip",
-      "size": 339448,
-      "md5": "a77e83ff5a78ef85ca0d8672080a38f4",
-      "icon_url": "Image_Browser.png",
-      "author": "G.R.H",
-      "screenshots": [
-        "Image_Browser.jpg"
-      ],
-      "dependencies": [],
-      "compatibility": [],
-      "min_os_version": "",
-      "changelog_zh": "",
-      "changelog_en": "",
-      "instruction_zh": "请到 APPS 中运行。",
-      "instruction_en": "Please run it in APPS."
-    },
-    {
-      "id": "clock",
-      "name": "Clock",
-      "version": "1.2",
-      "description_en": "Clock, timer, stopwatch & weather display.",
-      "description_zh": "时钟、计时器、秒表与天气显示工具。",
-      "category": "tools",
-      "download_url": "Clock.zip",
-      "size": 558410,
-      "md5": "b9a4dce4a1eb350efd1ecf53c26b77cc",
-      "icon_url": "Clock.png",
-      "author": "G.R.H",
-      "screenshots": [
-        "Clock.jpg"
       ],
       "dependencies": [],
       "compatibility": [],
