@@ -33,7 +33,7 @@ from urllib.error import ContentTooShortError, URLError
 # =========================
 from PIL import Image, ImageDraw, ImageFont
 
-cur_app_ver = "2.0.5"
+cur_app_ver = "3.0.0"
 base_ver = "3.8.0"
 base_date = "20250211"
 source = "source/"
