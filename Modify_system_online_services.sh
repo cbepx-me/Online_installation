@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="1.0.0"
+version="3.0.0"
 progdir="$(cd $(dirname "$0") || exit; pwd)"
 program="${progdir}/upgrade/launcher.py"
 log_file="${progdir}/upgrade/log.txt"
