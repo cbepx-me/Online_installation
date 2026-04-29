@@ -28,7 +28,7 @@ from typing import Dict, List, Optional, Tuple, Any
 # =========================
 from PIL import Image, ImageDraw, ImageFont
 
-cur_app_ver = "1.0.0"
+cur_app_ver = "3.0.0"
 assets_date = "260215"
 
 def ensure_requests():
