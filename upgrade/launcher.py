@@ -24,7 +24,7 @@ from dataclasses import dataclass
 # =========================
 from PIL import Image, ImageDraw, ImageFont
 
-cur_app_ver = "1.0.1"
+cur_app_ver = "1.0.2"
 
 def ensure_requests():
     try:
@@ -146,8 +146,8 @@ class Config:
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0'
     }
 
-    if os.name != "nt":
-        mirrors.pop(0)
+    #if os.name != "nt":
+        #mirrors.pop(0)
     fallback_mirror = mirrors[0]
     speeds = []
     for mirror in mirrors:
