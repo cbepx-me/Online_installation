@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-29T04:59:56Z",
+  "last_updated": "2026-04-30T02:16:07Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.2",
   "software": [
@@ -128,6 +128,29 @@
       "changelog_en": "",
       "instruction_zh": "",
       "instruction_en": ""
+    },
+    {
+      "id": "ROCreader",
+      "name": "ROCreader",
+      "version": "1.4.0",
+      "description_en": "A comic reader used in models 34xx and 34xxsp based on the H700 chip.",
+      "description_zh": "一款基于H700芯片的漫画阅读器，用于34xx和34xxsp等型号。",
+      "category": "tools",
+      "download_url": "ROCreader-1.4.0.zip",
+      "size": 32519140,
+      "md5": "fa99a92dcde668d089b4a92b96a68c63",
+      "icon_url": "ROCreader.png",
+      "author": "LPF970915",
+      "screenshots": [
+        "ROCreader.jpg"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "https://github.com/LPF970915/ROCreader",
+      "changelog_en": "https://github.com/LPF970915/ROCreader",
+      "instruction_zh": "请到 APPS 中运行。",
+      "instruction_en": "Please run it in APPS."
     }
   ]
 }
