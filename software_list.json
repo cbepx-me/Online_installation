@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-30T02:16:07Z",
+  "last_updated": "2026-04-30T13:16:10Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.2",
   "software": [
@@ -76,16 +76,140 @@
       "id": "theme_Pokemon_640x480",
       "name": "【柚子主题】宝可梦",
       "version": "3.0",
-      "description_en": "Pok é mon Theme.",
+      "description_en": "Pokemon Theme.",
       "description_zh": "宝可梦主题。",
       "category": "themes",
       "download_url": "theme_Pokemon_640x480.zip",
       "size": 38778668,
       "md5": "7b1ce4d7111f922fc73cb57722f7f19e",
-      "icon_url": "",
-      "author": "柚子",
+      "icon_url": "youzi.png",
+      "author": "Wuli灬柚子",
       "screenshots": [
         "theme_Pokemon_640x480.jpg"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG28xx",
+        "RG35xx+_P",
+        "RG35xxH",
+        "RG35xxSP",
+        "RG40xxH",
+        "RG40xxV",
+        "RG35xxPRO"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "theme_Gengar_640x480",
+      "name": "【柚子主题】耿鬼",
+      "version": "3.0",
+      "description_en": "Gengar Theme.",
+      "description_zh": "耿鬼主题。",
+      "category": "themes",
+      "download_url": "theme_Gengar_640x480.zip",
+      "size": 32547231,
+      "md5": "6f77e2240d83b24547555666bcd4b19b",
+      "icon_url": "youzi.png",
+      "author": "Wuli灬柚子",
+      "screenshots": [
+        "theme_Gengar_640x480.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG28xx",
+        "RG35xx+_P",
+        "RG35xxH",
+        "RG35xxSP",
+        "RG40xxH",
+        "RG40xxV",
+        "RG35xxPRO"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "theme_Mario_640x480",
+      "name": "【柚子主题】马里奥",
+      "version": "3.0",
+      "description_en": "Mario Theme.",
+      "description_zh": "马里奥主题。",
+      "category": "themes",
+      "download_url": "theme_Mario_640x480.zip",
+      "size": 29663269,
+      "md5": "c19500c028252d7ac2e113c8869744f1",
+      "icon_url": "youzi.png",
+      "author": "Wuli灬柚子",
+      "screenshots": [
+        "theme_Mario_640x480.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG28xx",
+        "RG35xx+_P",
+        "RG35xxH",
+        "RG35xxSP",
+        "RG40xxH",
+        "RG40xxV",
+        "RG35xxPRO"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "theme_Zelda_640x480",
+      "name": "【柚子主题】塞尔达",
+      "version": "3.0",
+      "description_en": "Zelda Theme.",
+      "description_zh": "塞尔达主题。",
+      "category": "themes",
+      "download_url": "theme_Zelda_640x480.zip",
+      "size": 34481171,
+      "md5": "6dffa026cb6fbd856a431ab6249ed18f",
+      "icon_url": "youzi.png",
+      "author": "Wuli灬柚子",
+      "screenshots": [
+        "theme_Zelda_640x480.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG28xx",
+        "RG35xx+_P",
+        "RG35xxH",
+        "RG35xxSP",
+        "RG40xxH",
+        "RG40xxV",
+        "RG35xxPRO"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "theme_stock_640x480",
+      "name": "【Stock】官方主题",
+      "version": "3.0",
+      "description_en": "Stock OS Theme.",
+      "description_zh": "官方默认主题",
+      "category": "themes",
+      "download_url": "theme_stock_640x480.zip",
+      "size": 27183179,
+      "md5": "bc6ed0530cd27049e129d687b447dc7b",
+      "icon_url": "anbernic.png",
+      "author": "anbernic",
+      "screenshots": [
+        "theme_stock_640x480.png"
       ],
       "dependencies": [],
       "compatibility": [
@@ -113,8 +237,8 @@
       "download_url": "theme_Mario_720x480.zip",
       "size": 35293440,
       "md5": "83526d6f1388d1ca98b1c5379ec7628e",
-      "icon_url": "",
-      "author": "柚子",
+      "icon_url": "youzi.png",
+      "author": "Wuli灬柚子",
       "screenshots": [
         "theme_Mario_720x480.jpg"
       ],
@@ -130,17 +254,275 @@
       "instruction_en": ""
     },
     {
+      "id": "theme_Pokemon_720x480",
+      "name": "【柚子主题】宝可梦",
+      "version": "3.0",
+      "description_en": "Pokemon Theme.",
+      "description_zh": "宝可梦主题。",
+      "category": "themes",
+      "download_url": "theme_Pokemon_720x480.zip",
+      "size": 35841601,
+      "md5": "066e9cf290b352e5563140e5c50e9f3d",
+      "icon_url": "youzi.png",
+      "author": "Wuli灬柚子",
+      "screenshots": [
+        "theme_Pokemon_720x480.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG34xx",
+        "RG34xxSP"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "theme_Gengar_720x480",
+      "name": "【柚子主题】耿鬼",
+      "version": "3.0",
+      "description_en": "Gengar Theme.",
+      "description_zh": "耿鬼主题。",
+      "category": "themes",
+      "download_url": "theme_Gengar_720x480.zip",
+      "size": 38760002,
+      "md5": "8e6e7f568298eb733772f1ad84b22e47",
+      "icon_url": "youzi.png",
+      "author": "Wuli灬柚子",
+      "screenshots": [
+        "theme_Gengar_720x480.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG34xx",
+        "RG34xxSP"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "theme_Zelda_720x480",
+      "name": "【柚子主题】塞尔达",
+      "version": "3.0",
+      "description_en": "Zelda Theme.",
+      "description_zh": "塞尔达主题。",
+      "category": "themes",
+      "download_url": "theme_Zelda_720x480.zip",
+      "size": 41751671,
+      "md5": "2cfef31b5420ebdeb2ee7c448a6816af",
+      "icon_url": "youzi.png",
+      "author": "Wuli灬柚子",
+      "screenshots": [
+        "theme_Zelda_720x480.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG34xx",
+        "RG34xxSP"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "theme_Mario_720x720",
+      "name": "【柚子主题】马里奥",
+      "version": "3.0",
+      "description_en": "Mario Theme.",
+      "description_zh": "马里奥主题。",
+      "category": "themes",
+      "download_url": "theme_Mario_720x720.zip",
+      "size": 34667367,
+      "md5": "84df057935cb2d9ee6222fb404f27d16",
+      "icon_url": "youzi.png",
+      "author": "Wuli灬柚子",
+      "screenshots": [
+        "theme_Mario_720x720.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RGcubexx"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "theme_Switch2_720x480",
+      "name": "【ROC主题】Switch2",
+      "version": "3.0",
+      "description_en": "Switch2 Theme.",
+      "description_zh": "Switch2 主题。",
+      "category": "themes",
+      "download_url": "theme_Switch2_720x480.zip",
+      "size": 35571211,
+      "md5": "8e78ad44f148015352163d64a2f2609a",
+      "icon_url": "roc.png",
+      "author": "Blood_roc",
+      "screenshots": [
+        "theme_Switch2_720x480.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG34xx",
+        "RG34xxSP"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "theme_zzz_720x480",
+      "name": "【ROC主题】绝区零",
+      "version": "3.0",
+      "description_en": "ZZZ Theme.",
+      "description_zh": "绝区零主题。",
+      "category": "themes",
+      "download_url": "theme_zzz_720x480.zip",
+      "size": 38590188,
+      "md5": "d3eacfae412164e8237b253a1c76ff9d",
+      "icon_url": "roc.png",
+      "author": "Blood_roc",
+      "screenshots": [
+        "theme_zzz_720x480.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG34xx",
+        "RG34xxSP"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "theme_WutheringWaves_720x480",
+      "name": "【ROC主题】鸣潮",
+      "version": "3.0",
+      "description_en": "WutheringWaves Theme.",
+      "description_zh": "鸣潮主题。",
+      "category": "themes",
+      "download_url": "theme_WutheringWaves_720x480.zip",
+      "size": 39400796,
+      "md5": "119907dbe1e8b9abe2199a0840589acc",
+      "icon_url": "roc.png",
+      "author": "Blood_roc",
+      "screenshots": [
+        "theme_WutheringWaves_720x480.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG34xx",
+        "RG34xxSP"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "theme_Endfield_720x480",
+      "name": "【ROC主题】终末地",
+      "version": "3.0",
+      "description_en": "Endfield Theme.",
+      "description_zh": "终末地主题。",
+      "category": "themes",
+      "download_url": "theme_Endfield_720x480.zip",
+      "size": 37377674,
+      "md5": "112ad9c3bc1b069179778aaf567a471c",
+      "icon_url": "roc.png",
+      "author": "Blood_roc",
+      "screenshots": [
+        "theme_Endfield_720x480.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG34xx",
+        "RG34xxSP"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "theme_stock_720x480",
+      "name": "【Stock】官方主题",
+      "version": "3.0",
+      "description_en": "Stock OS Theme.",
+      "description_zh": "官方默认主题。",
+      "category": "themes",
+      "download_url": "theme_stock_720x480.zip",
+      "size": 32250199,
+      "md5": "878f31a7813941736faaba4e2b71ac55",
+      "icon_url": "anbernic.png",
+      "author": "Anbenric",
+      "screenshots": [
+        "theme_stock_720x480.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG34xx",
+        "RG34xxSP"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "theme_stock_720x720",
+      "name": "【Stock】官方主题",
+      "version": "3.0",
+      "description_en": "Stock OS Theme.",
+      "description_zh": "官方默认主题。",
+      "category": "themes",
+      "download_url": "theme_stock_720x720.zip",
+      "size": 29280069,
+      "md5": "8c499dcdba35f4da10d14f5cc3f6bb84",
+      "icon_url": "anbernic.png",
+      "author": "Anbenric",
+      "screenshots": [
+        "theme_stock_720x720.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RGcubexx"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
       "id": "ROCreader",
       "name": "ROCreader",
       "version": "1.4.0",
-      "description_en": "A comic reader used in models 34xx and 34xxsp based on the H700 chip.",
-      "description_zh": "一款基于H700芯片的漫画阅读器，用于34xx和34xxsp等型号。",
+      "description_en": "A comic reader based on H700 chip, suitable for all H700 models.",
+      "description_zh": "一款基于 H700 芯片的漫画阅读器，用于全部 H700 型号。",
       "category": "tools",
       "download_url": "ROCreader-1.4.0.zip",
       "size": 32519140,
       "md5": "fa99a92dcde668d089b4a92b96a68c63",
       "icon_url": "ROCreader.png",
-      "author": "LPF970915",
+      "author": "Blood_roc",
       "screenshots": [
         "ROCreader.jpg"
       ],
