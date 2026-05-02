@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-30T13:16:10Z",
+  "last_updated": "2026-05-02T13:15:00Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.2",
   "software": [
@@ -34,8 +34,8 @@
       "description_zh": "安装这个补丁，修复系统中所有已知问题，实现 100% 在 stockOS MOD 上运行 port。",
       "category": "games",
       "download_url": "PortMaster-patch.zip",
-      "size": 69985859,
-      "md5": "fea126fbf2a301277f182041af83e104",
+      "size": 69651380,
+      "md5": "17c9cc94f1b4aabfa83d47fc5de60902",
       "icon_url": "kai4man.png",
       "author": "KAI4MAN",
       "screenshots": [
