@@ -24,7 +24,7 @@ from dataclasses import dataclass
 # =========================
 from PIL import Image, ImageDraw, ImageFont
 
-cur_app_ver = "1.0.2"
+cur_app_ver = "1.0.3"
 
 def ensure_requests():
     try:
