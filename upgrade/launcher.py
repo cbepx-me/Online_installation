@@ -129,6 +129,12 @@ class Config:
 
     mirrors = [
         {
+            "name": "Local",
+            "url": "http://127.0.0.1/download/app_ver.json",
+            "down_url": "http://127.0.0.1/download/",
+            "region": "Local"
+        },
+        {
             "name": "GitHub",
             "url": "https://raw.githubusercontent.com/cbepx-me/Online_installation/refs/heads/main/app_ver.json",
             "down_url": "https://github.com/cbepx-me/Online_installation/releases/download/download/",
@@ -146,8 +152,8 @@ class Config:
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0'
     }
 
-    #if os.name != "nt":
-        #mirrors.pop(0)
+    if os.name != "nt":
+        mirrors.pop(0)
     fallback_mirror = mirrors[0]
     speeds = []
     for mirror in mirrors:
