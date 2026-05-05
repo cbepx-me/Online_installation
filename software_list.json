@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-05T08:49:47Z",
+  "last_updated": "2026-05-05T12:02:31Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.3",
   "software": [
@@ -29,14 +29,14 @@
     {
       "id": "PortMaster-patch",
       "name": "PortMaster Patch",
-      "version": "1.0",
+      "version": "1.1",
       "description_en": "To achieve 100% port operation on StockOS MOD, you need to install this patch to fix all known issues in the system.",
       "description_zh": "安装这个补丁，修复系统中所有已知问题，实现 100% 在 stockOS MOD 上运行 port。",
       "category": "games",
-      "download_url": "PortMaster-patch.zip",
-      "size": 69985937,
-      "md5": "dc4ca845f23683b282cd01a268887aa1",
-      "icon_url": "PortMaster-patch.png",
+      "download_url": "PortMaster-patch-1.1.zip",
+      "size": 69253280,
+      "md5": "f29d5e927c794a7787c2065b4089e25c",
+      "icon_url": "kai4man.png",
       "author": "KAI4MAN",
       "screenshots": [
         "PortMaster-patch_1.jpg"
