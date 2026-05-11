@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-05T12:02:31Z",
+  "last_updated": "2026-05-11T12:27:25Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.3",
   "software": [
@@ -29,13 +29,13 @@
     {
       "id": "PortMaster-patch",
       "name": "PortMaster Patch",
-      "version": "1.1",
+      "version": "1.2",
       "description_en": "To achieve 100% port operation on StockOS MOD, you need to install this patch to fix all known issues in the system.",
       "description_zh": "安装这个补丁，修复系统中所有已知问题，实现 100% 在 stockOS MOD 上运行 port。",
       "category": "games",
-      "download_url": "PortMaster-patch-1.1.zip",
-      "size": 69253280,
-      "md5": "f29d5e927c794a7787c2065b4089e25c",
+      "download_url": "PortMaster-patch-1.2.zip",
+      "size": 69617436,
+      "md5": "769134c4b4b03bb892d0632467476d5f",
       "icon_url": "kai4man.png",
       "author": "KAI4MAN",
       "screenshots": [
@@ -514,13 +514,13 @@
     {
       "id": "ROCreader",
       "name": "ROCreader",
-      "version": "1.4.0",
+      "version": "1.6.3",
       "description_en": "A comic reader based on H700 chip, suitable for all H700 models.",
       "description_zh": "一款基于 H700 芯片的漫画阅读器，用于全部 H700 型号。",
       "category": "tools",
-      "download_url": "ROCreader-1.4.0.zip",
-      "size": 32519140,
-      "md5": "fa99a92dcde668d089b4a92b96a68c63",
+      "download_url": "ROCreader-1.6.3.zip",
+      "size": 32580471,
+      "md5": "b5fa4df9a96c40a313ffe5e38131df86",
       "icon_url": "ROCreader.png",
       "author": "Blood_roc",
       "screenshots": [
