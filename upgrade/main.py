@@ -29,9 +29,7 @@ def main():
 
     if ensure_requests():
         import launcher
-
-    launcher.LauncherApp().run()
-
+        launcher.LauncherApp().run()
 
 if __name__ == "__main__":
     main()
