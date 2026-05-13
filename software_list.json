@@ -50,6 +50,29 @@
       "instruction_en": "Please run it in APPS."
     },
     {
+      "id": "PortMaster-Runtime",
+      "name": "PortMaster Runtime",
+      "version": "1.0",
+      "description_en": "Alternative download and installation solutions for situations where GitHub is inaccessible or inconvenient to access in China.",
+      "description_zh": "针对中国地区访问 GitHub 不便的情况，提供的备选下载与安装方案。",
+      "category": "games",
+      "download_url": "PortMaster-Runtime-1.0.zip",
+      "size": 13047746,
+      "md5": "055336f4f24bc49b0432166db62e3363",
+      "icon_url": "cbepx-me.png",
+      "author": "CBEPX-ME",
+      "screenshots": [
+        "PortMaster-Runtime_1.png"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "请到 APPS 中运行。",
+      "instruction_en": "Please run it in APPS."
+    },
+    {
       "id": "Tiny_Scraper",
       "name": "Tiny Scraper",
       "version": "2.0",
