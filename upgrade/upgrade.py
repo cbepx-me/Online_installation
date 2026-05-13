@@ -33,7 +33,7 @@ from urllib.error import ContentTooShortError, URLError
 # =========================
 from PIL import Image, ImageDraw, ImageFont
 
-cur_app_ver = "3.0.0"
+cur_app_ver = "3.0.1"
 base_ver = "3.8.0"
 base_date = "20250211"
 source = "source/"
@@ -198,11 +198,6 @@ class Config:
 
     mirrors = [
         {
-            "name": "localhost",
-            "url": "http://127.0.0.1/source/update_info.json",
-            "region": "local"
-        },
-        {
             "name": "GitHub",
             "url": "https://github.com/cbepx-me/upgrade/releases/download/source/update_info.json",
             "region": "Global"
@@ -218,8 +213,6 @@ class Config:
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0'
     }
 
-    if os.name != "nt":
-        mirrors.pop(0)
     fallback_mirror = mirrors[0]
     speeds = []
     for mirror in mirrors:
