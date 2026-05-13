@@ -28,7 +28,7 @@ from typing import Dict, List, Optional, Tuple, Any
 # =========================
 from PIL import Image, ImageDraw, ImageFont
 
-cur_app_ver = "3.0.0"
+cur_app_ver = "3.0.1"
 assets_date = "260215"
 
 def ensure_requests():
@@ -192,12 +192,6 @@ class Config:
     # Software Repositories
     mirrors = [
         {
-            "name": "localhost",
-            "url": "http://127.0.0.1/download/software_list.json",
-            "region": "local",
-            "server": "http://127.0.0.1/download/"
-        },
-        {
             "name": "Gitcode",
             "url": "https://raw.gitcode.com/cbepx/install/raw/main/software_list.json",
             "region": "CN",
@@ -222,8 +216,6 @@ class Config:
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0'
     }
-    if os.name != 'nt':
-        mirrors.pop(0)
 
     fallback_mirror = mirrors[0]
     speeds = []
@@ -759,7 +751,7 @@ class UIRenderer:
                 self.text((text_x, text_y), label, font=font_size, anchor="mm",
                       color=text_color, bold=primary and not disabled)
 
-    def info_header(self, title: str, subtitle: str = None, ver: str = cur_app_ver) -> None:
+    def info_header(self, title: str, subtitle: str = None, ver: str = None) -> None:
         header_height = 100
 
         for i in range(header_height):
@@ -777,8 +769,8 @@ class UIRenderer:
         if subtitle:
             self.text((self.x_size // 2, 65), subtitle, font=18, anchor="mm",
                       color=self.cfg.COLOR_TEXT_SECONDARY, shadow=True)
-                      
-        self.text((self.x_size - 50, 65), f'v{ver}', font=18, anchor="mm", bold=True, shadow=True)
+        if ver:
+            self.text((self.x_size - 50, 65), f'v{ver}', font=18, anchor="mm", bold=True, shadow=True)
 
     def status_badge(self, center: Tuple[int, int], text: str, status: str = "info") -> None:
         colors = {
@@ -1366,7 +1358,8 @@ class SoftwareCenterUI:
         # Header
         self.ui.info_header(
             self.t.t("Software Center"),
-            self.t.t("Discover and install amazing applications")
+            self.t.t("Discover and install amazing applications"),
+            cur_app_ver
         )
 
         # Category tabs
@@ -1524,13 +1517,13 @@ class SoftwareCenterUI:
             desc = software.description
             if len(desc) > 17:
                 desc = desc[:14] + "..."
-            self.ui.text((info_x, y1 + 45), desc, font=14,
+            self.ui.text((info_x, y1 + 45), desc, font=15,
                          color=self.cfg.COLOR_TEXT_SECONDARY)
 
             # Version and size
             size_mb = software.size // (1024 * 1024)
             info_text = f"v{software.version} • {size_mb}MB" if software.version else  f"{size_mb}MB"
-            self.ui.text((info_x, y1 + 70), info_text, font=12,
+            self.ui.text((info_x, y1 + 70), info_text, font=14,
                          color=self.cfg.COLOR_TEXT_TERTIARY)
 
             # Install status button
@@ -1621,7 +1614,7 @@ class SoftwareCenterUI:
                       title=None, shadow=True, accent=True)
 
         # Software icon and basic info
-        icon_x = 80
+        icon_x = 70
         icon_y = content_top + 55
         icon_size = 60
 
@@ -1636,7 +1629,7 @@ class SoftwareCenterUI:
                 self.ui.display_image(value, icon_x - icon_size // 2, icon_y - icon_size // 2, icon_size, icon_size)
 
         # Software details
-        detail_x = icon_x + icon_size
+        detail_x = icon_x + icon_size - 20
         self.ui.text((detail_x, content_top + 18), software.name, font=22, bold=True)
         self.ui.text((detail_x, content_top + 50), f"v{software.version}" if software.version else "", font=16,
                      color=self.cfg.COLOR_TEXT_SECONDARY)
@@ -1667,7 +1660,7 @@ class SoftwareCenterUI:
         # Description
         desc_y = content_top + 100
         desc_width = panel_width // 2 - 20
-        wrapped_desc = self.wrap_text(software.description, 16, desc_width)
+        wrapped_desc = self.wrap_text(software.description, 19, desc_width)
 
         available_lines = 8
         display_lines = wrapped_desc[:available_lines]
@@ -1675,14 +1668,14 @@ class SoftwareCenterUI:
         for i, line in enumerate(display_lines):
             if i == available_lines - 1:
                 line = line[:-3] + "..."
-            self.ui.text((40, desc_y + i * 25), line, font=16,
+            self.ui.text((40, desc_y + i * 25), line, font=19,
                          color=self.cfg.COLOR_TEXT_SECONDARY)
 
         # Installation info
         info_y = content_top + 20
         size_mb = software.size // (1024 * 1024) if software.size >= 1024 * 1024 else software.size // 1024
         unit = "MB" if software.size >= 1024 * 1024 else "KB"
-        font_size = 16
+        font_size = 19
         try:
             font = ImageFont.truetype(self.cfg.font_file, font_size)
         except:
