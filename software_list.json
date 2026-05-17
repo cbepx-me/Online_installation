@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-11T12:27:25Z",
+  "last_updated": "2026-05-17T13:19:15Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.3",
   "software": [
@@ -86,6 +86,29 @@
       "author": "G.R.H",
       "screenshots": [
         "Tiny_Scraper.jpg"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "请到 APPS 中运行。",
+      "instruction_en": "Please run it in APPS."
+    },
+    {
+      "id": "Theme_Manager",
+      "name": "Theme Manager",
+      "version": "1.2",
+      "description_en": "The Theme Manager included in the early modified OS is suitable for locally installing theme packs.",
+      "description_zh": "早期魔改版系统包含的主题管理器，适合本地安装主题包。",
+      "category": "tools",
+      "download_url": "Theme_Manager.zip",
+      "size": 521622,
+      "md5": "3ef7a63c04210d8cae2d5a1634183ac7",
+      "icon_url": "cbepx-me.png",
+      "author": "G.R.H",
+      "screenshots": [
+        "Theme_Manager.png"
       ],
       "dependencies": [],
       "compatibility": [],
