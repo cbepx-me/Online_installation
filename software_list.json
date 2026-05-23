@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-17T13:19:15Z",
+  "last_updated": "2026-05-23T07:57:25Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.3",
   "software": [
@@ -560,13 +560,13 @@
     {
       "id": "ROCreader",
       "name": "ROCreader",
-      "version": "1.6.3",
+      "version": "2.0.4",
       "description_en": "A comic reader based on H700 chip, suitable for all H700 models.",
       "description_zh": "一款基于 H700 芯片的漫画阅读器，用于全部 H700 型号。",
       "category": "tools",
-      "download_url": "ROCreader-1.6.3.zip",
-      "size": 32580471,
-      "md5": "b5fa4df9a96c40a313ffe5e38131df86",
+      "download_url": "ROCreader-2.0.4.zip",
+      "size": 42058374,
+      "md5": "e557f7eae3c6c0f0a9c950ead3b0ac19",
       "icon_url": "ROCreader.png",
       "author": "Blood_roc",
       "screenshots": [
