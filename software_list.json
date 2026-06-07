@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-05-23T07:57:25Z",
+  "last_updated": "2026-06-07T02:09:25Z",
   "repository_name": "StockOS Software Repository",
-  "repository_version": "1.0.3",
+  "repository_version": "1.0.4",
   "software": [
     {
       "id": "rixelhk",
@@ -577,6 +577,29 @@
       "min_os_version": "",
       "changelog_zh": "https://github.com/LPF970915/ROCreader",
       "changelog_en": "https://github.com/LPF970915/ROCreader",
+      "instruction_zh": "请到 APPS 中运行。",
+      "instruction_en": "Please run it in APPS."
+    },
+    {
+      "id": "Rockbox",
+      "name": "Rockbox",
+      "version": "250920",
+      "description_en": "Rockbox is a free digital music player software that is suitable for many players.",
+      "description_zh": "Rockbox 是一款免费的数字音乐播放器软件，它适用于众多玩家。",
+      "category": "tools",
+      "download_url": "rockbox-250920.zip",
+      "size": 54558356,
+      "md5": "83b239bb6f854e217121bae99c91bff6",
+      "icon_url": "Rockbox.png",
+      "author": "Rockbox",
+      "screenshots": [
+        "Rockbox_1.png"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "https://github.com/Rockbox/rockbox",
+      "changelog_en": "https://github.com/Rockbox/rockbox",
       "instruction_zh": "请到 APPS 中运行。",
       "instruction_en": "Please run it in APPS."
     }
