@@ -600,8 +600,8 @@
       "min_os_version": "",
       "changelog_zh": "https://github.com/xfangfang/wiliwili",
       "changelog_en": "https://github.com/xfangfang/wiliwili",
-      "instruction_zh": "请到 APPS 中运行。",
-      "instruction_en": "Please run it in APPS."
+      "instruction_zh": "请到 应用中心 中运行。",
+      "instruction_en": "Please run it in App Center."
     },
     {
       "id": "Rockbox",
