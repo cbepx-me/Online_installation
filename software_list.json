@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-07T02:09:25Z",
+  "last_updated": "2026-06-11T13:13:51Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
@@ -577,6 +577,29 @@
       "min_os_version": "",
       "changelog_zh": "https://github.com/LPF970915/ROCreader",
       "changelog_en": "https://github.com/LPF970915/ROCreader",
+      "instruction_zh": "请到 APPS 中运行。",
+      "instruction_en": "Please run it in APPS."
+    },
+    {
+      "id": "wiliwili",
+      "name": "WiliWili",
+      "version": "1.6.0",
+      "description_en": "The third-party Bilibili client provides a Bilibili browsing experience that is very similar to the official PC client.",
+      "description_zh": "第三方B站客户端，拥有非常接近官方PC客户端的B站浏览体验。",
+      "category": "tools",
+      "download_url": "wili_up_v1.60.zip",
+      "size": 14429821,
+      "md5": "0bdc4efb60ffc8736d59642d9fd05ac6",
+      "icon_url": "xfangfang.jpg",
+      "author": "xfangfang",
+      "screenshots": [
+        "wiliwili.png"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "https://github.com/xfangfang/wiliwili",
+      "changelog_en": "https://github.com/xfangfang/wiliwili",
       "instruction_zh": "请到 APPS 中运行。",
       "instruction_en": "Please run it in APPS."
     },
