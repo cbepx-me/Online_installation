@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-08T13:35:32Z",
+  "last_updated": "2026-07-26T13:38:51Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
@@ -291,7 +291,8 @@
       "dependencies": [],
       "compatibility": [
         "RG34xx",
-        "RG34xxSP"
+        "RG34xxSP",
+        "RGSP"
       ],
       "min_os_version": "",
       "changelog_zh": "",
@@ -317,7 +318,8 @@
       "dependencies": [],
       "compatibility": [
         "RG34xx",
-        "RG34xxSP"
+        "RG34xxSP",
+        "RGSP"
       ],
       "min_os_version": "",
       "changelog_zh": "",
@@ -343,7 +345,8 @@
       "dependencies": [],
       "compatibility": [
         "RG34xx",
-        "RG34xxSP"
+        "RG34xxSP",
+        "RGSP"
       ],
       "min_os_version": "",
       "changelog_zh": "",
@@ -369,7 +372,8 @@
       "dependencies": [],
       "compatibility": [
         "RG34xx",
-        "RG34xxSP"
+        "RG34xxSP",
+        "RGSP"
       ],
       "min_os_version": "",
       "changelog_zh": "",
@@ -420,7 +424,8 @@
       "dependencies": [],
       "compatibility": [
         "RG34xx",
-        "RG34xxSP"
+        "RG34xxSP",
+        "RGSP"
       ],
       "min_os_version": "",
       "changelog_zh": "",
@@ -446,7 +451,8 @@
       "dependencies": [],
       "compatibility": [
         "RG34xx",
-        "RG34xxSP"
+        "RG34xxSP",
+        "RGSP"
       ],
       "min_os_version": "",
       "changelog_zh": "",
@@ -472,7 +478,8 @@
       "dependencies": [],
       "compatibility": [
         "RG34xx",
-        "RG34xxSP"
+        "RG34xxSP",
+        "RGSP"
       ],
       "min_os_version": "",
       "changelog_zh": "",
@@ -498,7 +505,8 @@
       "dependencies": [],
       "compatibility": [
         "RG34xx",
-        "RG34xxSP"
+        "RG34xxSP",
+        "RGSP"
       ],
       "min_os_version": "",
       "changelog_zh": "",
@@ -524,7 +532,8 @@
       "dependencies": [],
       "compatibility": [
         "RG34xx",
-        "RG34xxSP"
+        "RG34xxSP",
+        "RGSP"
       ],
       "min_os_version": "",
       "changelog_zh": "",
