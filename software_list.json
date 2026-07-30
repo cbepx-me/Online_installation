@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-30T10:22:51Z",
+  "last_updated": "2026-07-30T11:42:25Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
@@ -11,8 +11,8 @@
       "description_zh": "竖版街机游戏一对一专用边框资源文件",
       "category": "themes",
       "download_url": "bezels_arcade_35.zip",
-      "size": 71890848,
-      "md5": "f9034252b96ca536d3987c94095b86e4",
+      "size": 71678658,
+      "md5": "9cfcb704da511607e840e6a10ce552cb",
       "icon_url": "cbepx-me.png",
       "author": "cbepx-me",
       "screenshots": [
@@ -68,8 +68,8 @@
       "description_zh": "竖版街机游戏一对一专用边框资源文件",
       "category": "themes",
       "download_url": "bezels_arcade_cube.zip",
-      "size": 53909844,
-      "md5": "2dafc3544d54b18046b56230673a5203",
+      "size": 53703643,
+      "md5": "6c19a039d0fed4288c8bf7ed6e10c6f6",
       "icon_url": "cbepx-me.png",
       "author": "cbepx-me",
       "screenshots": [
