@@ -1,8 +1,90 @@
 {
-  "last_updated": "2026-07-26T13:38:51Z",
+  "last_updated": "2026-07-30T05:32:27Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
+    {
+      "id": "bootlogo_35",
+      "name": "Boot Logo",
+      "version": "1.0",
+      "description_en": "Image file for randomly displaying boot logo",
+      "description_zh": "供随机显示开机标志的图像文件",
+      "category": "themes",
+      "download_url": "bootlogo_35.zip",
+      "size": 23089555,
+      "md5": "37a966195b649e401146bfc111711b12",
+      "icon_url": "cbepx-me.png",
+      "author": "cbepx-me",
+      "screenshots": [
+        "bootlogo_35.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG35xx+_P",
+        "RG35xxH",
+        "RG35xxSP",
+        "RG40xxH",
+        "RG40xxV",
+        "RG35xxPRO"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "bootlogo_34",
+      "name": "Boot Logo",
+      "version": "1.0",
+      "description_en": "Image file for randomly displaying boot logo",
+      "description_zh": "供随机显示开机标志的图像文件",
+      "category": "themes",
+      "download_url": "bootlogo_34.zip",
+      "size": 27931792,
+      "md5": "9c7365ad4ea3b4b6aa50897b9660c428",
+      "icon_url": "cbepx-me.png",
+      "author": "cbepx-me",
+      "screenshots": [
+        "bootlogo_34.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG34xx",
+        "RG34xxSP",
+        "RGSP"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "bootlogo_cube",
+      "name": "Boot Logo",
+      "version": "1.0",
+      "description_en": "Image file for randomly displaying boot logo",
+      "description_zh": "供随机显示开机标志的图像文件",
+      "category": "themes",
+      "download_url": "bootlogo_cube.zip",
+      "size": 40781624,
+      "md5": "5980e8321a1379d1aae029ed3e5dd05d",
+      "icon_url": "cbepx-me.png",
+      "author": "cbepx-me",
+      "screenshots": [
+        "bootlogo_cube.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RGcubexx"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
     {
       "id": "rixelhk",
       "name": "RixelHK",
