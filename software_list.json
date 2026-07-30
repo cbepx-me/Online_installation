@@ -1,8 +1,90 @@
 {
-  "last_updated": "2026-07-30T05:32:27Z",
+  "last_updated": "2026-07-30T10:22:51Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
+    {
+      "id": "bezels_arcade_35",
+      "name": "Vertical Arcade bezels",
+      "version": "1.0",
+      "description_en": "One on one dedicated bezels resources for vertical arcade games",
+      "description_zh": "竖版街机游戏一对一专用边框资源文件",
+      "category": "themes",
+      "download_url": "bezels_arcade_35.zip",
+      "size": 71890848,
+      "md5": "f9034252b96ca536d3987c94095b86e4",
+      "icon_url": "cbepx-me.png",
+      "author": "cbepx-me",
+      "screenshots": [
+        "bezels_arcade.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG35xx+_P",
+        "RG35xxH",
+        "RG35xxSP",
+        "RG40xxH",
+        "RG40xxV",
+        "RG35xxPRO"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "bezels_arcade_34",
+      "name": "Vertical Arcade bezels",
+      "version": "1.0",
+      "description_en": "One on one dedicated bezels resources for vertical arcade games",
+      "description_zh": "竖版街机游戏一对一专用边框资源文件",
+      "category": "themes",
+      "download_url": "bezels_arcade_34.zip",
+      "size": 40447928,
+      "md5": "fa35df94987c49f550eae0f495d8f252",
+      "icon_url": "cbepx-me.png",
+      "author": "cbepx-me",
+      "screenshots": [
+        "bezels_arcade.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RG34xx",
+        "RG34xxSP",
+        "RGSP"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
+    {
+      "id": "bezels_arcade_cube",
+      "name": "Vertical Arcade bezels",
+      "version": "1.0",
+      "description_en": "One on one dedicated bezels resources for vertical arcade games",
+      "description_zh": "竖版街机游戏一对一专用边框资源文件",
+      "category": "themes",
+      "download_url": "bezels_arcade_cube.zip",
+      "size": 53909844,
+      "md5": "2dafc3544d54b18046b56230673a5203",
+      "icon_url": "cbepx-me.png",
+      "author": "cbepx-me",
+      "screenshots": [
+        "bezels_arcade.png"
+      ],
+      "dependencies": [],
+      "compatibility": [
+        "RGcubexx"
+      ],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "",
+      "instruction_en": ""
+    },
     {
       "id": "bootlogo_35",
       "name": "Boot Logo",
