@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-04T09:40:46Z",
+  "last_updated": "2026-08-04T12:26:54Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
@@ -239,13 +239,13 @@
     {
       "id": "Tiny_Scraper",
       "name": "Tiny Scraper",
-      "version": "2.0",
+      "version": "2.1",
       "description_en": "Game ROM media scraper, auto-download screenshots.",
       "description_zh": "游戏ROM媒体刮削器，自动下载截图。",
       "category": "tools",
       "download_url": "Tiny_Scraper.zip",
-      "size": 1052502,
-      "md5": "890feb794691168c4be5699725cac1b0",
+      "size": 1068145,
+      "md5": "5a9681cd725be62470bdbce55891f793",
       "icon_url": "Tiny_Scraper.png",
       "author": "G.R.H",
       "screenshots": [
