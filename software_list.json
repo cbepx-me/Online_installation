@@ -746,7 +746,18 @@
         "ROCreader.jpg"
       ],
       "dependencies": [],
-      "compatibility": [],
+      "compatibility": [
+        "RG28xx",
+        "RG35xx+_P",
+        "RG35xxH",
+        "RG35xxSP",
+        "RG40xxH",
+        "RG40xxV",
+        "RG35xxPRO",
+        "RG34xx",
+        "RG34xxSP",
+        "RGcubexx"
+      ],
       "min_os_version": "",
       "changelog_zh": "https://github.com/LPF970915/ROCreader",
       "changelog_en": "https://github.com/LPF970915/ROCreader",
