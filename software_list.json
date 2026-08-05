@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-04T12:26:54Z",
+  "last_updated": "2026-08-05T09:04:54Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
@@ -414,8 +414,8 @@
       "description_zh": "官方默认主题",
       "category": "themes",
       "download_url": "theme_stock_640x480.zip",
-      "size": 27183179,
-      "md5": "bc6ed0530cd27049e129d687b447dc7b",
+      "size": 44488842,
+      "md5": "432791aff9d1ef9d3ce617665b8d553b",
       "icon_url": "anbernic.png",
       "author": "anbernic",
       "screenshots": [
@@ -686,8 +686,8 @@
       "description_zh": "官方默认主题。",
       "category": "themes",
       "download_url": "theme_stock_720x480.zip",
-      "size": 32250199,
-      "md5": "878f31a7813941736faaba4e2b71ac55",
+      "size": 49905617,
+      "md5": "81c8f41c35a5b068ce26ef7636bc41bc",
       "icon_url": "anbernic.png",
       "author": "Anbenric",
       "screenshots": [
@@ -713,8 +713,8 @@
       "description_zh": "官方默认主题。",
       "category": "themes",
       "download_url": "theme_stock_720x720.zip",
-      "size": 29280069,
-      "md5": "8c499dcdba35f4da10d14f5cc3f6bb84",
+      "size": 50476112,
+      "md5": "277e688964d7f26e3603e35e2477bad0",
       "icon_url": "anbernic.png",
       "author": "Anbenric",
       "screenshots": [
