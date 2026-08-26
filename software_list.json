@@ -1,8 +1,54 @@
 {
-  "last_updated": "2026-08-05T09:04:54Z",
+  "last_updated": "2026-08-26T09:05:57Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
+    {
+      "id": "netradio",
+      "name": "Network Radio",
+      "version": "1.0.0",
+      "description_en": "A lightweight, full‑screen network radio player designed",
+      "description_zh": "一款轻量级全屏网络电台播放器软件",
+      "category": "tools",
+      "download_url": "netradio_v1.0.0.zip",
+      "size": 4729086,
+      "md5": "9a144c69816433bbae5f48a249bc81aa",
+      "icon_url": "cbepx-me.png",
+      "author": "cbepx-me",
+      "screenshots": [
+        "netradio.png"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "请到 APPS 中运行。",
+      "instruction_en": "Please run it in APPS."
+    },
+    {
+      "id": "nettv",
+      "name": "TV Live",
+      "version": "1.0.0",
+      "description_en": "TVLive is a live TV player designed for Anbernic handheld consoles",
+      "description_zh": "TVLive 是一款轻量级直播电视播放器",
+      "category": "tools",
+      "download_url": "nettv_v1.0.0.zip",
+      "size": 4795090,
+      "md5": "a54906c12d0481b45891635adc4c2936",
+      "icon_url": "cbepx-me.png",
+      "author": "cbepx-me",
+      "screenshots": [
+        "nettv.png"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "请到 APPS 中运行。",
+      "instruction_en": "Please run it in APPS."
+    },
     {
       "id": "bezels_arcade_35",
       "name": "Vertical Arcade bezels",
