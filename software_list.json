@@ -1,11 +1,12 @@
 {
-  "last_updated": "2026-08-27T10:11:26Z",
+  "last_updated": "2026-08-30T12:38:03Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
     {
       "id": "netradio",
       "name": "Network Radio",
+      "name_zh": "网络收音机",
       "version": "1.0.1",
       "description_en": "A lightweight, full‑screen network radio player designed",
       "description_zh": "一款轻量级全屏网络电台播放器软件",
@@ -23,12 +24,13 @@
       "min_os_version": "",
       "changelog_zh": "",
       "changelog_en": "",
-      "instruction_zh": "请到 APPS 中运行。",
-      "instruction_en": "Please run it in APPS."
+      "instruction_zh": "添加广播播放列表 .txt 文件到 Radio 文件夹 (例如/mnt/mmc/Radio)。",
+      "instruction_en": "Add the broadcast playlist. txt file to the Radio folder (e.g./mnt/mmc/Radio)."
     },
     {
       "id": "nettv",
       "name": "TV Live",
+      "name_zh": "网络电视",
       "version": "1.0.0",
       "description_en": "TVLive is a live TV player designed for Anbernic handheld consoles",
       "description_zh": "TVLive 是一款轻量级直播电视播放器",
@@ -46,12 +48,13 @@
       "min_os_version": "",
       "changelog_zh": "",
       "changelog_en": "",
-      "instruction_zh": "请到 APPS 中运行。",
-      "instruction_en": "Please run it in APPS."
+      "instruction_zh": "放置你的.m3u文件到TV文件夹,享受在设备上观看IPTV的乐趣。",
+      "instruction_en": "Place your. m3u file in the TV folder and enjoy watching IPTV on your device."
     },
     {
       "id": "bezels_arcade_35",
       "name": "Vertical Arcade bezels",
+      "name_zh": "竖版街机遮罩",
       "version": "1.0",
       "description_en": "One on one dedicated bezels resources for vertical arcade games",
       "description_zh": "竖版街机游戏一对一专用边框资源文件",
@@ -82,6 +85,7 @@
     {
       "id": "bezels_arcade_34",
       "name": "Vertical Arcade bezels",
+      "name_zh": "竖版街机遮罩",
       "version": "1.0",
       "description_en": "One on one dedicated bezels resources for vertical arcade games",
       "description_zh": "竖版街机游戏一对一专用边框资源文件",
@@ -109,6 +113,7 @@
     {
       "id": "bezels_arcade_cube",
       "name": "Vertical Arcade bezels",
+      "name_zh": "竖版街机遮罩",
       "version": "1.0",
       "description_en": "One on one dedicated bezels resources for vertical arcade games",
       "description_zh": "竖版街机游戏一对一专用边框资源文件",
@@ -134,6 +139,7 @@
     {
       "id": "bootlogo_35",
       "name": "Boot Logo",
+      "name_zh": "启动 Logo",
       "version": "1.0",
       "description_en": "Image file for randomly displaying boot logo",
       "description_zh": "供随机显示开机标志的图像文件",
@@ -164,6 +170,7 @@
     {
       "id": "bootlogo_34",
       "name": "Boot Logo",
+      "name_zh": "启动 Logo",
       "version": "1.0",
       "description_en": "Image file for randomly displaying boot logo",
       "description_zh": "供随机显示开机标志的图像文件",
@@ -191,6 +198,7 @@
     {
       "id": "bootlogo_cube",
       "name": "Boot Logo",
+      "name_zh": "启动 Logo",
       "version": "1.0",
       "description_en": "Image file for randomly displaying boot logo",
       "description_zh": "供随机显示开机标志的图像文件",
@@ -239,6 +247,7 @@
     {
       "id": "PortMaster-patch",
       "name": "PortMaster Patch",
+      "name_zh": "PortMaster 补丁",
       "version": "1.2",
       "description_en": "To achieve 100% port operation on StockOS MOD, you need to install this patch to fix all known issues in the system.",
       "description_zh": "安装这个补丁，修复系统中所有已知问题，实现 100% 在 stockOS MOD 上运行 port。",
@@ -262,6 +271,7 @@
     {
       "id": "PortMaster-Runtime",
       "name": "PortMaster Runtime",
+      "name_zh": "PortMaster 运行时",
       "version": "1.0",
       "description_en": "Alternative download and installation solutions for situations where GitHub is inaccessible or inconvenient to access in China.",
       "description_zh": "针对中国地区访问 GitHub 不便的情况，提供的备选下载与安装方案。",
@@ -283,31 +293,9 @@
       "instruction_en": "Please run it in APPS."
     },
     {
-      "id": "Tiny_Scraper",
-      "name": "Tiny Scraper",
-      "version": "2.1",
-      "description_en": "Game ROM media scraper, auto-download screenshots.",
-      "description_zh": "游戏ROM媒体刮削器，自动下载截图。",
-      "category": "tools",
-      "download_url": "Tiny_Scraper.zip",
-      "size": 1068145,
-      "md5": "5a9681cd725be62470bdbce55891f793",
-      "icon_url": "Tiny_Scraper.png",
-      "author": "G.R.H",
-      "screenshots": [
-        "Tiny_Scraper.jpg"
-      ],
-      "dependencies": [],
-      "compatibility": [],
-      "min_os_version": "",
-      "changelog_zh": "",
-      "changelog_en": "",
-      "instruction_zh": "请到 APPS 中运行。",
-      "instruction_en": "Please run it in APPS."
-    },
-    {
       "id": "Theme_Manager",
       "name": "Theme Manager",
+      "name_zh": "主题管理器",
       "version": "1.2",
       "description_en": "The Theme Manager included in the early modified OS is suitable for locally installing theme packs.",
       "description_zh": "早期魔改版系统包含的主题管理器，适合本地安装主题包。",
@@ -330,7 +318,8 @@
     },
     {
       "id": "theme_Pokemon_640x480",
-      "name": "【柚子主题】宝可梦",
+      "name": "Pokemon Theme",
+      "name_zh": "【柚子主题】宝可梦",
       "version": "3.0",
       "description_en": "Pokemon Theme.",
       "description_zh": "宝可梦主题。",
@@ -361,7 +350,8 @@
     },
     {
       "id": "theme_Gengar_640x480",
-      "name": "【柚子主题】耿鬼",
+      "name": "Gengar Theme",
+      "name_zh": "【柚子主题】耿鬼",
       "version": "3.0",
       "description_en": "Gengar Theme.",
       "description_zh": "耿鬼主题。",
@@ -392,7 +382,8 @@
     },
     {
       "id": "theme_Mario_640x480",
-      "name": "【柚子主题】马里奥",
+      "name": "Mario Theme",
+      "name_zh": "【柚子主题】马里奥",
       "version": "3.0",
       "description_en": "Mario Theme.",
       "description_zh": "马里奥主题。",
@@ -423,7 +414,8 @@
     },
     {
       "id": "theme_Zelda_640x480",
-      "name": "【柚子主题】塞尔达",
+      "name": "Zelda Theme",
+      "name_zh": "【柚子主题】塞尔达",
       "version": "3.0",
       "description_en": "Zelda Theme.",
       "description_zh": "塞尔达主题。",
@@ -454,7 +446,8 @@
     },
     {
       "id": "theme_stock_640x480",
-      "name": "【Stock】官方主题",
+      "name": "Stock OS Theme",
+      "name_zh": "【Stock】官方主题",
       "version": "3.0",
       "description_en": "Stock OS Theme.",
       "description_zh": "官方默认主题",
@@ -485,7 +478,8 @@
     },
     {
       "id": "theme_Mario_720x480",
-      "name": "【柚子主题】马里奥",
+      "name": "Mario Theme",
+      "name_zh": "【柚子主题】马里奥",
       "version": "3.0",
       "description_en": "Mario Theme.",
       "description_zh": "马里奥主题。",
@@ -512,7 +506,8 @@
     },
     {
       "id": "theme_Pokemon_720x480",
-      "name": "【柚子主题】宝可梦",
+      "name": "Pokemon Theme",
+      "name_zh": "【柚子主题】宝可梦",
       "version": "3.0",
       "description_en": "Pokemon Theme.",
       "description_zh": "宝可梦主题。",
@@ -539,7 +534,8 @@
     },
     {
       "id": "theme_Gengar_720x480",
-      "name": "【柚子主题】耿鬼",
+      "name": "Gengar Theme",
+      "name_zh": "【柚子主题】耿鬼",
       "version": "3.0",
       "description_en": "Gengar Theme.",
       "description_zh": "耿鬼主题。",
@@ -566,7 +562,8 @@
     },
     {
       "id": "theme_Zelda_720x480",
-      "name": "【柚子主题】塞尔达",
+      "name": "Zelda Theme",
+      "name_zh": "【柚子主题】塞尔达",
       "version": "3.0",
       "description_en": "Zelda Theme.",
       "description_zh": "塞尔达主题。",
@@ -593,7 +590,8 @@
     },
     {
       "id": "theme_Mario_720x720",
-      "name": "【柚子主题】马里奥",
+      "name": "Mario Theme",
+      "name_zh": "【柚子主题】马里奥",
       "version": "3.0",
       "description_en": "Mario Theme.",
       "description_zh": "马里奥主题。",
@@ -618,7 +616,8 @@
     },
     {
       "id": "theme_Switch2_720x480",
-      "name": "【ROC主题】Switch2",
+      "name": "Switch2 Theme",
+      "name_zh": "【ROC主题】Switch2",
       "version": "3.0",
       "description_en": "Switch2 Theme.",
       "description_zh": "Switch2 主题。",
@@ -645,7 +644,8 @@
     },
     {
       "id": "theme_zzz_720x480",
-      "name": "【ROC主题】绝区零",
+      "name": "ZZZ Theme",
+      "name_zh": "【ROC主题】绝区零",
       "version": "3.0",
       "description_en": "ZZZ Theme.",
       "description_zh": "绝区零主题。",
@@ -672,7 +672,8 @@
     },
     {
       "id": "theme_WutheringWaves_720x480",
-      "name": "【ROC主题】鸣潮",
+      "name": "WutheringWaves Theme",
+      "name_zh": "【ROC主题】鸣潮",
       "version": "3.0",
       "description_en": "WutheringWaves Theme.",
       "description_zh": "鸣潮主题。",
@@ -699,7 +700,8 @@
     },
     {
       "id": "theme_Endfield_720x480",
-      "name": "【ROC主题】终末地",
+      "name": "Endfield Theme",
+      "name_zh": "【ROC主题】终末地",
       "version": "3.0",
       "description_en": "Endfield Theme.",
       "description_zh": "终末地主题。",
@@ -726,7 +728,8 @@
     },
     {
       "id": "theme_stock_720x480",
-      "name": "【Stock】官方主题",
+      "name": "Stock OS Theme",
+      "name_zh": "【Stock】官方主题",
       "version": "3.0",
       "description_en": "Stock OS Theme.",
       "description_zh": "官方默认主题。",
@@ -753,7 +756,8 @@
     },
     {
       "id": "theme_stock_720x720",
-      "name": "【Stock】官方主题",
+      "name": "Stock OS Theme",
+      "name_zh": "【Stock】官方主题",
       "version": "3.0",
       "description_en": "Stock OS Theme.",
       "description_zh": "官方默认主题。",
