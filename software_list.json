@@ -1,8 +1,104 @@
 {
-  "last_updated": "2026-08-30T12:38:03Z",
+  "last_updated": "2026-08-31T09:17:26Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
+    {
+      "id": "bezels_namager",
+      "name": "Bezel Custom Manager",
+      "name_zh": "遮罩定制管理器",
+      "version": "1.2",
+      "description_en": "Software used to customize default mask settings for modified systems.",
+      "description_zh": "魔改系统用来定制默认的遮罩设置的软件。",
+      "category": "tools",
+      "download_url": "Bezel_Custom_Manager_v1.2.zip",
+      "size": 364596,
+      "md5": "3c1a4435a5a4b3ed65c12b2fd7cf49bb",
+      "icon_url": "icon.png",
+      "author": "cbepx-me",
+      "screenshots": [
+        "bezels_namager.png"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "遮罩配置文件放置位置在 卡1 的 anbernic/bezels 中对应模拟器名称的文件夹内, 扩展名为 .cfg。",
+      "instruction_en": "The bezel config file is placed in the folder corresponding to the emulation name in anbernic/bezels of SD1, with the extension .cfg."
+    },
+    {
+      "id": "temp",
+      "name": "System Monitor",
+      "name_zh": "系统监视器",
+      "version": "1.0",
+      "description_en": "A software used to view hardware temperature and battery information.",
+      "description_zh": "一款用来查看硬件温度和电池信息的软件。",
+      "category": "tools",
+      "download_url": "temp_v1.0.zip",
+      "size": 342612,
+      "md5": "e94ecbb46636b2d3a7f693c0125aff6b",
+      "icon_url": "kai4man.png",
+      "author": "KAI4MAN",
+      "screenshots": [
+        "temp.png"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "请到 APPS 中运行。",
+      "instruction_en": "Please run it in APPS."
+    },
+    {
+      "id": "clock",
+      "name": "Clock",
+      "name_zh": "时钟",
+      "version": "1.3",
+      "description_en": "A software that supports clock, stopwatch, countdown, and time setting functions.",
+      "description_zh": "一款支持时钟，秒表，倒计时和时间设置功能的软件。",
+      "category": "tools",
+      "download_url": "clock_v1.3.zip",
+      "size": 564189,
+      "md5": "53f114caa531a9672fb3c973be6cec05",
+      "icon_url": "icon.png",
+      "author": "cbepx-me",
+      "screenshots": [
+        "clock.png"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "请到 APPS 中运行。",
+      "instruction_en": "Please run it in APPS."
+    },
+    {
+      "id": "Img_browser",
+      "name": "Image Browser",
+      "name_zh": "图片浏览器",
+      "version": "1.2",
+      "description_en": "A software for browsing images, supporting slideshow playback.",
+      "description_zh": "一款用来浏览图片的软件，支持幻灯片播放。",
+      "category": "tools",
+      "download_url": "Img_browser_v1.2.zip",
+      "size": 365605,
+      "md5": "573b564379b51608e4dbe81361a50ec8",
+      "icon_url": "icon.png",
+      "author": "cbepx-me",
+      "screenshots": [
+        "Img_browser.png"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "",
+      "changelog_en": "",
+      "instruction_zh": "请到 APPS 中运行。",
+      "instruction_en": "Please run it in APPS."
+    },
     {
       "id": "netradio",
       "name": "Network Radio",
@@ -300,9 +396,9 @@
       "description_en": "The Theme Manager included in the early modified OS is suitable for locally installing theme packs.",
       "description_zh": "早期魔改版系统包含的主题管理器，适合本地安装主题包。",
       "category": "tools",
-      "download_url": "Theme_Manager.zip",
-      "size": 521622,
-      "md5": "3ef7a63c04210d8cae2d5a1634183ac7",
+      "download_url": "Theme_Manager_v1.2.zip",
+      "size": 524522,
+      "md5": "0a390be7546a5daba699341ad16a6650",
       "icon_url": "cbepx-me.png",
       "author": "G.R.H",
       "screenshots": [
@@ -313,8 +409,8 @@
       "min_os_version": "",
       "changelog_zh": "",
       "changelog_en": "",
-      "instruction_zh": "请到 APPS 中运行。",
-      "instruction_en": "Please run it in APPS."
+      "instruction_zh": "主题文件放置位置在 卡1 和 卡2 的 anbernic/themes 中。",
+      "instruction_en": "Theme files should be placed in anbernic/themes on SD1 or SD2."
     },
     {
       "id": "theme_Pokemon_640x480",
