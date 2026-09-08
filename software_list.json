@@ -320,6 +320,7 @@
     {
       "id": "rixelhk",
       "name": "RixelHK",
+      "name_zh": "RixelHK",
       "version": "1.15",
       "description_en": "RixelHK is an application designed to help users quickly download and install various games. It offers a wide range of game resources with one-click download and automatic installation features, streamlining the game download process. Users can browse by game category for a more seamless and personalized gaming experience.",
       "description_zh": "RixelHK 是一款帮助用户快速下载、安装各类游戏的应用程序。它提供丰富的游戏资源支持一键下载和自动安装，简化了游戏下载过程。用户可以按游戏类型进行分类查找，为用户提供更流畅和个性化的游戏体验。",
@@ -879,6 +880,7 @@
     {
       "id": "ROCreader",
       "name": "ROCreader",
+      "name_zh": "ROCreader",
       "version": "2.6.4",
       "description_en": "A comic reader based on H700 chip, suitable for all H700 models.",
       "description_zh": "一款基于 H700 芯片的漫画阅读器，用于全部 H700 型号。",
@@ -913,6 +915,7 @@
     {
       "id": "wiliwili",
       "name": "WiliWili",
+      "name_zh": "WiliWili",
       "version": "1.6.0",
       "description_en": "The third-party Bilibili client provides a Bilibili browsing experience that is very similar to the official PC client.",
       "description_zh": "第三方B站客户端，拥有非常接近官方PC客户端的B站浏览体验。",
@@ -936,6 +939,7 @@
     {
       "id": "Rockbox",
       "name": "Rockbox",
+      "name_zh": "Rockbox",
       "version": "250920",
       "description_en": "Rockbox is a free digital music player software that is suitable for many players.",
       "description_zh": "Rockbox 是一款免费的数字音乐播放器软件，它适用于众多玩家。",
