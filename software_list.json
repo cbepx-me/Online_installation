@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-28T11:13:50Z",
+  "last_updated": "2026-09-28T13:31:25Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
@@ -103,13 +103,13 @@
       "id": "netradio",
       "name": "Network Radio",
       "name_zh": "网络收音机",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description_en": "A lightweight, full‑screen network radio player designed",
       "description_zh": "一款轻量级全屏网络电台播放器软件",
       "category": "tools",
-      "download_url": "netradio_v1.0.1.zip",
-      "size": 4728905,
-      "md5": "6ed0145353a91db8d831e20832c8f58a",
+      "download_url": "netradio_v1.0.2.zip",
+      "size": 5069761,
+      "md5": "4dd9b7f32df66459121f67fab125c16b",
       "icon_url": "cbepx-me.png",
       "author": "cbepx-me",
       "screenshots": [
