@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-28T13:31:25Z",
+  "last_updated": "2026-09-28T14:15:48Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
@@ -108,8 +108,8 @@
       "description_zh": "一款轻量级全屏网络电台播放器软件",
       "category": "tools",
       "download_url": "netradio_v1.0.2.zip",
-      "size": 5069761,
-      "md5": "4dd9b7f32df66459121f67fab125c16b",
+      "size": 4956287,
+      "md5": "4fdfbc3f00559b57d793814ad38d5afe",
       "icon_url": "cbepx-me.png",
       "author": "cbepx-me",
       "screenshots": [
