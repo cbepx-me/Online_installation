@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-28T14:15:48Z",
+  "last_updated": "2026-09-29T14:25:02Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
@@ -109,7 +109,7 @@
       "category": "tools",
       "download_url": "netradio_v1.0.2.zip",
       "size": 4956287,
-      "md5": "4fdfbc3f00559b57d793814ad38d5afe",
+      "md5": "fa7caebee0aef52c97636e02fa258bdc",
       "icon_url": "cbepx-me.png",
       "author": "cbepx-me",
       "screenshots": [
@@ -132,8 +132,8 @@
       "description_zh": "TVLive 是一款轻量级直播电视播放器",
       "category": "tools",
       "download_url": "nettv_v1.0.2.zip",
-      "size": 4589033,
-      "md5": "3073901654f3add3ea4474d564c5d862",
+      "size": 4589573,
+      "md5": "d5ffdb0db6f55509a5b65b69452018bb",
       "icon_url": "cbepx-me.png",
       "author": "cbepx-me",
       "screenshots": [
