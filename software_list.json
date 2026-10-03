@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-29T14:25:02Z",
+  "last_updated": "2026-10-03T10:45:43Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
@@ -108,8 +108,8 @@
       "description_zh": "一款轻量级全屏网络电台播放器软件",
       "category": "tools",
       "download_url": "netradio_v1.0.2.zip",
-      "size": 4956287,
-      "md5": "fa7caebee0aef52c97636e02fa258bdc",
+      "size": 4955883,
+      "md5": "c8d73a74236a4601d2512def72a641f8",
       "icon_url": "cbepx-me.png",
       "author": "cbepx-me",
       "screenshots": [
@@ -132,8 +132,8 @@
       "description_zh": "TVLive 是一款轻量级直播电视播放器",
       "category": "tools",
       "download_url": "nettv_v1.0.2.zip",
-      "size": 4589573,
-      "md5": "d5ffdb0db6f55509a5b65b69452018bb",
+      "size": 4511786,
+      "md5": "a931236cdaa4c4fd6e8d9bf092a3b9cb",
       "icon_url": "cbepx-me.png",
       "author": "cbepx-me",
       "screenshots": [
@@ -326,8 +326,8 @@
       "description_zh": "RixelHK 是一款帮助用户快速下载、安装各类游戏的应用程序。它提供丰富的游戏资源支持一键下载和自动安装，简化了游戏下载过程。用户可以按游戏类型进行分类查找，为用户提供更流畅和个性化的游戏体验。",
       "category": "tools",
       "download_url": "RixelHK-H700-US-1.15-RC.zip",
-      "size": 24339990,
-      "md5": "9bf57e9825208b3d88435cead410595b",
+      "size": 23659252,
+      "md5": "c18295e4a0e9ffc1fedb4ae17f5ac810",
       "icon_url": "rixelhk.png",
       "author": "RixelHK",
       "screenshots": [
@@ -374,8 +374,8 @@
       "description_zh": "针对中国地区访问 GitHub 不便的情况，提供的备选下载与安装方案。",
       "category": "games",
       "download_url": "PortMaster-Runtime-1.0.zip",
-      "size": 13047690,
-      "md5": "7fa7a912163f6a7037d74fce4ae45de4",
+      "size": 12958946,
+      "md5": "790c2ce89acb39ef161da35ab2f3df81",
       "icon_url": "cbepx-me.png",
       "author": "CBEPX-ME",
       "screenshots": [
@@ -886,8 +886,8 @@
       "description_zh": "一款基于 H700 芯片的漫画阅读器，用于全部 H700 型号。",
       "category": "tools",
       "download_url": "ROCreader-2.6.4.zip",
-      "size": 44965173,
-      "md5": "76fac3c8c2f01ce3c0461f1501b205b5",
+      "size": 44037541,
+      "md5": "c1d97deec4754e9a22e80046e69619f2",
       "icon_url": "ROCreader.png",
       "author": "Blood_roc",
       "screenshots": [
@@ -945,8 +945,8 @@
       "description_zh": "Rockbox 是一款免费的数字音乐播放器软件，它适用于众多玩家。",
       "category": "tools",
       "download_url": "rockbox-250920.zip",
-      "size": 54558356,
-      "md5": "83b239bb6f854e217121bae99c91bff6",
+      "size": 52211786,
+      "md5": "598781ac066ee402ada9c948aee3b4ef",
       "icon_url": "Rockbox.png",
       "author": "Rockbox",
       "screenshots": [
