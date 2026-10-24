@@ -1,8 +1,32 @@
 {
-  "last_updated": "2026-10-03T14:08:57Z",
+  "last_updated": "2026-10-18T00:39:52Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
+    {
+      "id": "yabadabadoo",
+      "name": "Yabadabadoo",
+      "name_zh": "Yabadabadoo",
+      "version": "0.2.1",
+      "description_en": "Yabadabadoo is a Sega Saturn emulator core for RetroArch, a fork of Yabause optimised for Miyoo Mini devices.",
+      "description_zh": "Yabadabadoo 是一款用于 RetroArch 的世嘉土星模拟器核心, 是 Yabause 的一个分支, 专为 Miyoo Mini 设备优化。",
+      "category": "emulators",
+      "download_url": "yabadabadoo-0.2.1.zip",
+      "size": 718831,
+      "md5": "3bb4aa92a8c26312517e84dc030856ce",
+      "icon_url": "icon.png",
+      "author": "ProRapSuperstarOriginalMaster",
+      "screenshots": [
+        "yabadabadoo.png"
+      ],
+      "dependencies": [],
+      "compatibility": [],
+      "min_os_version": "",
+      "changelog_zh": "https://github.com/ProRapSuperstarOriginalMaster/Yabadabadoo",
+      "changelog_en": "https://github.com/ProRapSuperstarOriginalMaster/Yabadabadoo",
+      "instruction_zh": "请在 SATURN 游戏列表中按 Y 键，将核心设置为 yabasanshiro_libretro.so。",
+      "instruction_en": "Please press the Y key in the SATURN game list to set the core to yabasanshiro_libretro.so."
+    },
     {
       "id": "bezels_namager",
       "name": "Bezel Custom Manager",
@@ -108,8 +132,8 @@
       "description_zh": "一款轻量级全屏网络电台播放器软件",
       "category": "tools",
       "download_url": "netradio_v1.0.2.zip",
-      "size": 4955883,
-      "md5": "c8d73a74236a4601d2512def72a641f8",
+      "size": 678535,
+      "md5": "d632581856a7b34f56521c0727c8613a",
       "icon_url": "cbepx-me.png",
       "author": "cbepx-me",
       "screenshots": [
@@ -132,8 +156,8 @@
       "description_zh": "TVLive 是一款轻量级直播电视播放器",
       "category": "tools",
       "download_url": "nettv_v1.0.2.zip",
-      "size": 4511786,
-      "md5": "a931236cdaa4c4fd6e8d9bf092a3b9cb",
+      "size": 234462,
+      "md5": "8717f88699a4e1e538baabdc8b3982c6",
       "icon_url": "cbepx-me.png",
       "author": "cbepx-me",
       "screenshots": [
