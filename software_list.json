@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-24T15:45:22Z",
+  "last_updated": "2026-10-25T08:37:34Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
@@ -7,13 +7,13 @@
       "id": "yabadabadoo",
       "name": "Yabadabadoo",
       "name_zh": "Yabadabadoo",
-      "version": "0.2.1",
+      "version": "0.3",
       "description_en": "Yabadabadoo is a Sega Saturn emulator core for RetroArch, a fork of Yabause optimised for Miyoo Mini devices.",
       "description_zh": "Yabadabadoo 是一款用于 RetroArch 的世嘉土星模拟器核心, 是 Yabause 的一个分支, 专为 Miyoo Mini 设备优化。",
       "category": "emulators",
-      "download_url": "yabadabadoo-0.2.1.zip",
-      "size": 718831,
-      "md5": "3bb4aa92a8c26312517e84dc030856ce",
+      "download_url": "yabadabadoo-0.3.zip",
+      "size": 722173,
+      "md5": "effd373e88a4f4fbcb5698d0e12168f0",
       "icon_url": "icon.png",
       "author": "ProRapSuperstarOriginalMaster",
       "screenshots": [
