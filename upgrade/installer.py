@@ -8,6 +8,7 @@ from __future__ import annotations
 # Standard Library Imports
 # =========================
 import ctypes
+import glob
 import json
 import logging
 import math
@@ -28,7 +29,7 @@ from typing import Dict, List, Optional, Tuple, Any
 # =========================
 from PIL import Image, ImageDraw, ImageFont
 
-cur_app_ver = "3.0.1"
+cur_app_ver = "3.0.6"
 assets_date = "260215"
 
 def ensure_requests():
@@ -248,6 +249,7 @@ class Config:
                 "RGcubexx": 1,
                 "RG34xx": 2,
                 "RG34xxSP": 2,
+                "RGSP": 2,
                 "RG28xx": 3,
                 "RG35xx+_P": 4,
                 "RG35xxH": 5,
@@ -297,6 +299,7 @@ class Config:
 class SoftwarePackage:
     id: str
     name: str
+    name_zh: str
     version: str
     category: str
     size: int
@@ -388,6 +391,8 @@ class InputHandler:
         self.cfg = cfg
         self.code_name: str = ""
         self.value: int = 0
+        self.board_info = Path("/mnt/vendor/oem/board.ini").read_text().splitlines()[0].strip()
+        self.device_path = self._find_anbernic_device()
 
         if os.name == "nt":
             self.key_map = {
@@ -404,6 +409,24 @@ class InputHandler:
                 sdl2.SDLK_PAGEDOWN: ("L2", 1),
                 sdl2.SDLK_HOME: ("R2", 1),
             }
+
+    def _find_anbernic_device(self):
+        keyword = "ANBERNIC"
+        for event_path in glob.glob("/dev/input/event*"):
+            dev_name = os.path.basename(event_path)
+            sys_path = f"/sys/class/input/{dev_name}/device/name"
+            try:
+                with open(sys_path, 'r') as f:
+                    name = f.read().strip()
+                    if keyword in name:
+                        return event_path
+            except Exception:
+                continue
+
+        fallback = f"/dev/input/event{self.cfg.board_mapping.get(self.board_info, 5)}"
+        if os.path.exists(fallback):
+            return fallback
+        raise RuntimeError("No ANBERNIC input device found")
 
     def poll(self) -> None:
         if os.name == "nt":
@@ -424,7 +447,7 @@ class InputHandler:
             self.value = 0
         else:
             try:
-                with open("/dev/input/event1", "rb") as f:
+                with open(self.device_path, "rb") as f:
                     while True:
                         event = f.read(24)
                         if not event:
@@ -662,7 +685,10 @@ class UIRenderer:
             if self.hw_info == 3 and rota == 1 and self.hdmi_info != "HDMI=1":
                 img = img.rotate(-90, expand=True)
 
-            self.active_image.paste(img, (paste_x, paste_y))
+            if img.mode == 'RGBA':
+                self.active_image.paste(img, (paste_x, paste_y), mask=img)
+            else:
+                self.active_image.paste(img, (paste_x, paste_y))
 
         except Exception as e:
             LOGGER.error(f"Failed to load image {image_path}: {e}")
@@ -929,7 +955,7 @@ class SoftwareManager:
         self.current_category = "all"
         self.selected_software: Optional[SoftwarePackage] = None
         self.search_query = ""
-        self.board_info = Path(self.cfg.root_path + "/mnt/vendor/oem/board.ini").read_text().splitlines()[0]
+        self.board_info = Path("/mnt/vendor/oem/board.ini").read_text().splitlines()[0].strip()
 
         self.session = requests.Session()
         self.session.headers.update(self.cfg.headers)
@@ -1081,11 +1107,15 @@ class SoftwareManager:
 
             install_script = os.path.join(install_dir, "install.sh")
             uninstall_script = os.path.join(install_dir, "uninstall.sh")
+            function_script = os.path.join(install_dir, "functions")
+            for s in (install_script, uninstall_script, function_script):
+                if os.path.exists(s):
+                    os.chmod(s, 0o755)
             has_install = os.path.isfile(install_script)
             has_uninstall = os.path.isfile(uninstall_script)
-            print(software)
+            LOGGER.debug(software)
 
-            if has_install and os.name != 'nt':
+            if has_install:
                 LOGGER.info(f"Executing install.sh for {software.name}")
                 self.ui.tips_info(self.t.t("Installing") + ' ...')
                 try:
@@ -1110,7 +1140,7 @@ class SoftwareManager:
                     shutil.rmtree(self.cfg.cache_path, ignore_errors=True)
                     return False
 
-            if has_uninstall and os.name != 'nt':
+            if has_uninstall:
                 LOGGER.info(f"Copying uninstall.sh from {software.name}")
                 uninstall_dir = os.path.join(self.cfg.uninstall_path, software.category, software.id)
                 os.makedirs(uninstall_dir, exist_ok=True)
@@ -1123,6 +1153,7 @@ class SoftwareManager:
             software.installed = True
             software.local_version = software.version
             software.install_path = install_dir
+            software.update_available = False
             self.installed_software[software.id] = software
             self.save_installed_software()
 
@@ -1137,52 +1168,65 @@ class SoftwareManager:
             shutil.rmtree(self.cfg.cache_path, ignore_errors=True)
 
     def uninstall_software(self, software: SoftwarePackage) -> bool:
-        """Uninstall software package"""
+        """Uninstall software package, return True on success, False on failure."""
         try:
-            if software.id in self.installed_software:
-                # Remove installation directory
-                if software.install_path and os.path.exists(software.install_path):
-                    shutil.rmtree(software.install_path)
+            if software.id not in self.installed_software:
+                LOGGER.warning(f"Software {software.id} not in installed database")
+                return False
 
-                uninstall_dir = os.path.join(self.cfg.uninstall_path, software.category, software.id)
-                uninstall_script = os.path.join(uninstall_dir, "uninstall.sh")
-                if os.path.exists(uninstall_script):
-                    LOGGER.info(f"Executing uninstall.sh for {software.name}")
-                    try:
-                        st = os.stat(os.path.join(uninstall_dir, "uninstall.sh"))
-                        os.chmod(os.path.join(uninstall_dir, "uninstall.sh"), st.st_mode | 0o111)
-                        result = subprocess.run(
-                            ["/bin/bash", "uninstall.sh"],
-                            cwd=uninstall_dir,
-                            capture_output=True,
-                            text=True,
-                            timeout=300
-                        )
-                        if result.returncode != 0:
-                            LOGGER.error(f"uninstall.sh failed with return code {result.returncode}")
-                            LOGGER.error(f"stdout: {result.stdout}")
-                            LOGGER.error(f"stderr: {result.stderr}")
-                    except Exception as e:
-                        LOGGER.error(f"Error uninstalling {software.name}: {e}")
-                    finally:
-                        os.remove(uninstall_script)
+            # Remove installation directory (temporary extracted files)
+            if software.install_path and os.path.exists(software.install_path):
+                shutil.rmtree(software.install_path)
 
-                # Remove from database
-                del self.installed_software[software.id]
-                self.save_installed_software()
+            uninstall_dir = os.path.join(self.cfg.uninstall_path, software.category, software.id)
+            uninstall_script = os.path.join(uninstall_dir, "uninstall.sh")
+            script_success = True
 
-                # Update software list
-                for s in self.software_list:
-                    if s.id == software.id:
-                        s.installed = False
-                        s.update_available = False
-                        break
+            if os.path.exists(uninstall_script):
+                LOGGER.info(f"Executing uninstall.sh for {software.name}")
+                try:
+                    st = os.stat(uninstall_script)
+                    os.chmod(uninstall_script, st.st_mode | 0o111)
+                    result = subprocess.run(
+                        ["/bin/bash", "uninstall.sh"],
+                        cwd=uninstall_dir,
+                        capture_output=True,
+                        text=True,
+                        timeout=300
+                    )
+                    if result.returncode != 0:
+                        LOGGER.error(f"uninstall.sh failed with return code {result.returncode}")
+                        LOGGER.error(f"stdout: {result.stdout}")
+                        LOGGER.error(f"stderr: {result.stderr}")
+                        script_success = False
+                except Exception as e:
+                    LOGGER.error(f"Error executing uninstall.sh for {software.name}: {e}")
+                    script_success = False
 
-                LOGGER.info(f"Successfully uninstalled {software.name}")
-                return True
-            return False
+                if not script_success:
+                    LOGGER.warning("Uninstall script failed, keeping database entry")
+                    return False
+                else:
+                    os.remove(uninstall_script)
+            else:
+                LOGGER.info(f"No uninstall script found for {software.name}, skipping")
+
+            # Remove from database
+            del self.installed_software[software.id]
+            self.save_installed_software()
+
+            # Update software list state
+            for s in self.software_list:
+                if s.id == software.id:
+                    s.installed = False
+                    s.update_available = False
+                    break
+
+            LOGGER.info(f"Successfully uninstalled {software.name}")
+            return True
+
         except Exception as e:
-            LOGGER.error(f"Error uninstalling {software.name}: {e}")
+            LOGGER.error(f"Unexpected error during uninstallation of {software.name}: {e}")
             return False
 
     def _download_software(self, software: SoftwarePackage, download_path: str) -> bool:
@@ -1343,7 +1387,7 @@ class SoftwareCenterUI:
         self.cfg = manager.cfg
 
         self.current_page = 0
-        self.board_info = Path(self.cfg.root_path + "/mnt/vendor/oem/board.ini").read_text().splitlines()[0]
+        self.board_info = Path("/mnt/vendor/oem/board.ini").read_text().splitlines()[0].strip()
         self.hw_info = self.cfg.board_mapping.get(self.board_info, 5)
         if self.hw_info == 1:
             self.software_per_page = 6
@@ -1503,7 +1547,11 @@ class SoftwareCenterUI:
             max_name_width = x2 - info_x - 10
 
             # Software name (truncate if too long)
-            name = software.name
+            lang = self.t.lang_code
+            if lang.startswith('zh') and software.name_zh:
+                name = software.name_zh
+            else:
+                name = software.name
             name_width = self.ui.active_draw.textlength(name, font=ImageFont.truetype(self.cfg.font_file, 18))
             if name_width > max_name_width:
                 while name and self.ui.active_draw.textlength(name + "...", font=ImageFont.truetype(self.cfg.font_file,
@@ -1604,7 +1652,12 @@ class SoftwareCenterUI:
         self.ui.clear()
 
         # Header with back button
-        self.ui.info_header(software.name, self.t.t("Software Details"))
+        lang = self.t.lang_code
+        if lang.startswith('zh') and software.name_zh:
+            display_name = software.name_zh
+        else:
+            display_name = software.name
+        self.ui.info_header(display_name, self.t.t("Software Details"))
 
         content_top = 100
         panel_width = self.ui.x_size - 40
@@ -1630,7 +1683,7 @@ class SoftwareCenterUI:
 
         # Software details
         detail_x = icon_x + icon_size - 20
-        self.ui.text((detail_x, content_top + 18), software.name, font=22, bold=True)
+        self.ui.text((detail_x, content_top + 18), display_name, font=22, bold=True)
         self.ui.text((detail_x, content_top + 50), f"v{software.version}" if software.version else "", font=16,
                      color=self.cfg.COLOR_TEXT_SECONDARY)
 
@@ -1934,7 +1987,7 @@ class SoftwareCenterApp:
 
         # Detect hardware and language
         try:
-            board_info = Path(self.cfg.root_path + "/mnt/vendor/oem/board.ini").read_text().splitlines()[0]
+            board_info = Path("/mnt/vendor/oem/board.ini").read_text().splitlines()[0].strip()
             LOGGER.info("Detected board: %s", board_info)
         except (FileNotFoundError, IndexError) as e:
             LOGGER.warning("Board detection failed: %s, using default RG35xxH", e)
@@ -1942,7 +1995,7 @@ class SoftwareCenterApp:
         self.board_info = board_info
 
         try:
-            lang_index_raw = Path(self.cfg.root_path + "/mnt/vendor/oem/language.ini").read_text().splitlines()[0]
+            lang_index_raw = Path("/mnt/vendor/oem/language.ini").read_text().splitlines()[0].strip()
             lang_index = int(lang_index_raw)
             LOGGER.info("Detected language index: %s", lang_index)
         except (FileNotFoundError, IndexError, ValueError) as e:
@@ -2053,8 +2106,8 @@ class SoftwareCenterApp:
             remote_ver_url = base_url + "assets_version.txt"
             remote_zip_url = base_url + "assets.zip"
 
-            local_ver_file = self.cfg.root_path + "/mnt/mod/ctrl/configs/software_center/assets_version.txt"
-            target_dir = self.cfg.root_path + "/mnt/mod/ctrl/configs/software_center"
+            local_ver_file = "/mnt/mod/ctrl/configs/software_center/assets_version.txt"
+            target_dir = "/mnt/mod/ctrl/configs/software_center"
 
             local_ver = assets_date
             if os.path.exists(local_ver_file):
@@ -2282,12 +2335,14 @@ class SoftwareCenterApp:
                 return
 
             elif self.input.is_key("A"):
-                LOGGER.info(f"A button pressed for {software.name}")
-                if software.installed:
-                    if software.update_available:
-                        self.perform_software_update(software)
-                    else:
-                        self.install_software_from_detail(software)
+                if software.installed and not software.update_available:
+                    uninstall_dir = os.path.join(self.cfg.uninstall_path, software.category, software.id)
+                    uninstall_script = os.path.join(uninstall_dir, "uninstall.sh")
+                    if os.path.exists(uninstall_script):
+                        LOGGER.info("A key ignored because software is installed and has uninstall script")
+                        return
+                if software.installed and software.update_available:
+                    self.perform_software_update(software)
                 else:
                     self.install_software_from_detail(software)
 
@@ -2301,7 +2356,27 @@ class SoftwareCenterApp:
             self.input.reset()
 
     def perform_software_update(self, software: SoftwarePackage) -> None:
-        """Perform software update from detail view"""
+        """Perform software update: uninstall old version (if has uninstall script) then install new."""
+        if software.installed:
+            uninstall_dir = os.path.join(self.cfg.uninstall_path, software.category, software.id)
+            uninstall_script = os.path.join(uninstall_dir, "uninstall.sh")
+            if os.path.exists(uninstall_script):
+                self.ui_helper.draw_message(
+                    self.t.t("Uninstalling"),
+                    f"{self.t.t('Uninstalling old version of')} {software.name}...",
+                    "info"
+                )
+                self.ui.paint()
+                if not self.manager.uninstall_software(software):
+                    self.ui_helper.draw_message(
+                        self.t.t("Uninstall Failed"),
+                        f"{self.t.t('Failed to uninstall old version of')} {software.name}",
+                        "error"
+                    )
+                    self.wait_for_input()
+                    self.ui_helper.draw_software_detail(software)
+                    return
+
         self.ui_helper.draw_message(
             self.t.t("Updating"),
             f"{self.t.t('Updating')} {software.name}...",
