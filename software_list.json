@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-25T08:37:34Z",
+  "last_updated": "2026-11-02T06:40:35Z",
   "repository_name": "StockOS Software Repository",
   "repository_version": "1.0.4",
   "software": [
@@ -36,8 +36,8 @@
       "description_zh": "魔改系统用来定制默认的遮罩设置的软件。",
       "category": "tools",
       "download_url": "Bezel_Custom_Manager_v1.2.zip",
-      "size": 364217,
-      "md5": "147df9d73514ecdc494791799ffd80e0",
+      "size": 364135,
+      "md5": "7ae9746f20caf10a100f468b13ee3e07",
       "icon_url": "icon.png",
       "author": "cbepx-me",
       "screenshots": [
@@ -60,8 +60,8 @@
       "description_zh": "一款用来查看硬件温度和电池信息的软件。",
       "category": "tools",
       "download_url": "temp_v1.0.zip",
-      "size": 342298,
-      "md5": "bf98535a2beb95a0b2ca6127daaf147b",
+      "size": 342263,
+      "md5": "3e9d4a64b103fd150d374e58df0914f6",
       "icon_url": "kai4man.png",
       "author": "KAI4MAN",
       "screenshots": [
@@ -84,8 +84,8 @@
       "description_zh": "一款支持时钟，秒表，倒计时和时间设置功能的软件。",
       "category": "tools",
       "download_url": "clock_v1.3.zip",
-      "size": 563824,
-      "md5": "605c4125c2040a62c50fcb535f6243ef",
+      "size": 563793,
+      "md5": "1f1b6a7101f8cdc94028b498ab01e142",
       "icon_url": "icon.png",
       "author": "cbepx-me",
       "screenshots": [
@@ -108,8 +108,8 @@
       "description_zh": "一款用来浏览图片的软件，支持幻灯片播放。",
       "category": "tools",
       "download_url": "Img_browser_v1.2.zip",
-      "size": 365274,
-      "md5": "be98325334699e042c2fef44b3a91da7",
+      "size": 365241,
+      "md5": "8be352fe9a5f5f7ba92ce790e775b8ea",
       "icon_url": "icon.png",
       "author": "cbepx-me",
       "screenshots": [
@@ -446,8 +446,8 @@
       "description_zh": "早期魔改版系统包含的主题管理器，适合本地安装主题包。",
       "category": "tools",
       "download_url": "Theme_Manager_v1.2.zip",
-      "size": 524545,
-      "md5": "425e525fab63c93e60aea1342fccd579",
+      "size": 524219,
+      "md5": "3842957ebbf0a656533f99ed805d2310",
       "icon_url": "cbepx-me.png",
       "author": "G.R.H",
       "screenshots": [
